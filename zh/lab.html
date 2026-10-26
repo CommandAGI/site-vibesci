@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>实验室 · VibeSci</title>
+<meta name="description" content="在 VibeSci 的实验台孪生上运行一份移液协议：步骤记录、出问题的那个孔、原因，以及在同一孪生上验证过的改写协议。">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../mark.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../lab.html">
+<link rel="alternate" hreflang="es" href="../es/lab.html">
+<link rel="alternate" hreflang="zh-Hans" href="lab.html">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="../mark.svg" alt="" width="30" height="30">VibeSci</a>
+    <nav class="site-nav" aria-label="站点">
+      <a href="index.html">首页</a>
+      <a href="lab.html" aria-current="page">实验室</a>
+      <a href="index.html#how">它怎么工作</a>
+      <a href="index.html#contact">联系</a>
+      <span class="lang">
+        <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="语言" title="语言"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
+        <noscript><a href="../lab.html" hreflang="en" lang="en">English</a> · <a href="../es/lab.html" hreflang="es" lang="es">Español</a></noscript>
+        <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
+          <div class="lang-dialog__box">
+            <div class="lang-dialog__head"><h2 id="lang-dialog-title">语言</h2><form method="dialog"><button class="lang-dialog__close" aria-label="关闭">✕</button></form></div>
+            <ul class="lang-list" role="list">
+              <li><a href="../lab.html" hreflang="en"><span lang="en">English</span></a></li>
+              <li><a href="../es/lab.html" hreflang="es"><span lang="es">Español</span></a></li>
+              <li><a href="lab.html" hreflang="zh-Hans" aria-current="true"><span lang="zh-Hans">简体中文</span></a></li>
+            </ul>
+          </div>
+        </dialog>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="section" style="padding-top:28px">
+    <h1 style="font-size:clamp(1.6rem,3vw,2.2rem)">实验室</h1>
+    <p class="lead">左边是协议，右边是实验台。先运行，看步骤记录，然后让 VibeSci 修好它：改写后的版本在同一个孪生上运行，表格必须全部变绿。</p>
+    <div class="prompt">
+      <input type="text" id="prompt" aria-label="用一句话描述协议" placeholder="把 1 M 的母液在 A1..A8 做 1:10 稀释，B 行为空白">
+      <button type="button" class="btn" id="build">写出来</button>
+    </div>
+
+    <div class="console">
+      <div class="panel">
+        <div class="field">
+          <label for="protocol">协议原文（实验室写的那一份）</label>
+          <textarea id="protocol" spellcheck="false" aria-describedby="protocolhelp"></textarea>
+          <p id="protocolhelp" class="muted" style="font-size:0.85rem;margin:0">一行一步：<code>pick tip</code>、<code>aspirate 10 µL from A1</code>、<code>dispense 10 µL into A2</code>、<code>mix A2</code>、<code>eject tip</code>、<code>add 90 µL buffer to A1..A8</code>。<code>reservoir stock = 1 M</code> 给一瓶液体命名。</p>
+        </div>
+        <div class="field">
+          <label for="targets">每个孔的目标</label>
+          <textarea id="targets" spellcheck="false"></textarea>
+        </div>
+        <div class="row">
+          <button type="button" class="btn primary" id="run">在孪生上运行</button>
+          <button type="button" class="btn" id="fix">VibeSci，修复它</button>
+        </div>
+        <div class="problems" id="problems" hidden></div>
+        <div class="problems" id="targetproblems" hidden></div>
+      </div>
+
+      <div class="panel">
+        <canvas id="stage" width="720" height="360" role="img" aria-label="从实验台看一块 96 孔板，孔的颜色表示里面的浓度"></canvas>
+        <div class="row" style="justify-content:space-between;margin-top:10px">
+          <span class="row">
+            <button type="button" class="btn small" id="back" aria-label="上一步">◀</button>
+            <button type="button" class="btn small" id="replay">重放</button>
+            <button type="button" class="btn small" id="forward" aria-label="下一步">▶</button>
+          </span>
+          <span id="stepcount">第 1</span>
+        </div>
+        <div class="verdict" id="verdict" hidden></div>
+        <h3 style="margin-top:16px">实验台做了什么</h3>
+        <ol class="log" id="steps"></ol>
+        <h3 style="margin-top:16px">实验台发现了什么</h3>
+        <ul class="log" id="warnings"></ul>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="table-title">
+      <h2 id="table-title" style="font-size:1.3rem">目标与孪生实测</h2>
+      <table class="results" id="results">
+        <thead><tr><th scope="col">孔</th><th scope="col">目标</th><th scope="col">孪生实测</th><th scope="col">结果</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="section" aria-labelledby="fix-title">
+      <h2 id="fix-title" style="font-size:1.3rem">改写</h2>
+      <div class="verdict" id="fixverdict" hidden></div>
+      <div class="two">
+        <div>
+          <h3>VibeSci 改写了什么</h3>
+          <ul class="changes" id="changes"><li class="none muted">请求修复后，它加的每一行都列在这里，并说明原因。</li></ul>
+        </div>
+        <div>
+          <h3>改写后的协议</h3>
+          <pre class="code" id="fixedcode" hidden></pre>
+          <h3 style="margin-top:14px">改写后的运行</h3>
+          <table class="results" id="after">
+            <thead><tr><th scope="col">孔</th><th scope="col">孪生实测</th><th scope="col">结果</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>VibeSci，CommandAGI 旗下的一家公司。</span>
+    <span><a href="index.html">首页</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
+  </div>
+</footer>
+<script type="module" src="../app/lab.js"></script>
+</body>
+</html>

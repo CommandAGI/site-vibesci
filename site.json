@@ -1,0 +1,8 @@
+{
+  "v": 1,
+  "slug": "vibesci",
+  "description": "VibeSci, a little chemistry lab you run from a prompt: a written liquid-handling protocol and a target per well run on a digital twin of the bench, which names the step and the well that fail, rewrites the protocol and proves the fix in the same twin. A company of CommandAGI.",
+  "status": "active",
+  "resources": [],
+  "domains": []
+}

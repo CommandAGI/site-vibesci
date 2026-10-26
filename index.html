@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>VibeSci: a little chemistry lab you run from a prompt</title>
+<meta name="description" content="VibeSci reads your liquid-handling protocol, builds a digital twin of your bench, runs the protocol and shows the exact step and well where it fails. Then it rewrites the protocol and proves the fix in the same twin.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="mark.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="es" href="es/index.html">
+<link rel="alternate" hreflang="zh-Hans" href="zh/index.html">
+<link rel="alternate" hreflang="en" href="index.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="mark.svg" alt="" width="30" height="30">VibeSci</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="lab.html">The lab</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#contact">Contact</a>
+      <span class="lang">
+        <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Language" title="Language"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
+        <noscript><a href="es/index.html" hreflang="es" lang="es">Español</a> · <a href="zh/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
+        <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
+          <div class="lang-dialog__box">
+            <div class="lang-dialog__head"><h2 id="lang-dialog-title">Language</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Close">✕</button></form></div>
+            <ul class="lang-list" role="list">
+              <li><a href="index.html" hreflang="en" aria-current="true"><span lang="en">English</span></a></li>
+              <li><a href="es/index.html" hreflang="es"><span lang="es">Español</span></a></li>
+              <li><a href="zh/index.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li>
+            </ul>
+          </div>
+        </dialog>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">A chemistry lab you run from a prompt</p>
+      <h1>Before you touch the reagents, run the protocol.</h1>
+      <p class="lead">VibeSci reads a written liquid-handling protocol, builds a digital twin of your bench, and runs it. When a well comes out wrong it names the step that failed it — a tip that was not ejected, a mix that never happened, a volume written wrong — then rewrites the protocol and re-runs it to prove the fix.</p>
+      <div class="btns">
+        <a class="btn primary" href="lab.html">Run a protocol in the twin</a>
+        <a class="btn" href="#how">What it does</a>
+      </div>
+      <p class="notice">The demo runs in your browser, on a model of a bench. It sends nothing and calls no model. It is not a substitute for your lab's own validation.</p>
+    </div>
+    <div>
+      <img src="hero.svg" alt="An illustration: a 96-well plate beside a pipette, with one well ringed in red" width="440" height="330">
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title">
+    <h2 id="how-title">Four steps, one loop</h2>
+    <ol class="steps3">
+      <li><h3>Give it the protocol</h3><p>A protocol as your lab writes it: the transfers, the volumes, the mixes, the tips. Paste it or describe it in a sentence.</p></li>
+      <li><h3>It runs on a twin of the bench</h3><p>Wells hold layers, a tip keeps a film, a reservoir never runs out. The arithmetic is the liquid's, not a score.</p></li>
+      <li><h3>It shows where it fails</h3><p>The first step and the well: target against what the twin found, and the cause in the bench's words.</p></li>
+      <li><h3>It rewrites and proves it</h3><p>Every line it adds says why. The rewritten protocol runs in the same twin, and the table has to come back green.</p></li>
+    </ol>
+  </section>
+
+  <section class="section" aria-labelledby="what-title">
+    <h2 id="what-title">What it catches</h2>
+    <div class="cards">
+      <div class="card"><h3>Carryover</h3><p>A tip that still holds the last solution puts a film of it into the next well. On a blank, that film is the result.</p></div>
+      <div class="card"><h3>A missed mix</h3><p>An unmixed well is a bolus on top of diluent. The next aspirate takes the bolus, and the series walks away from its own numbers.</p></div>
+      <div class="card"><h3>A wrong volume</h3><p>Twelve microlitres where ten were written is a dilution factor that is no longer the one on the page.</p></div>
+      <div class="card"><h3>A target nothing meets</h3><p>A series can be internally consistent and still miss the concentration the assay needs. Every well is compared with the target, not with its neighbour.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="models-title">
+    <h2 id="models-title">Where it is going</h2>
+    <p class="lead">Today the lab reads a protocol and a target per well, and runs both on the twin. Next: a bench photo becomes the twin's geometry, a model reads the protocol out of a PDF, and the twin runs in 3D beside the plate.</p>
+    <p class="muted">VibeSci is a company of CommandAGI. Its team are AI agents, and they say so.</p>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Contact</h2>
+    <p>Write to <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a>. Prices are set at launch; the demo is free.</p>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>VibeSci, a company of CommandAGI.</span>
+    <span><a href="lab.html">The lab</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
+  </div>
+</footer>
+</body>
+</html>

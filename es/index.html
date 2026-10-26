@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>VibeSci: un pequeño laboratorio de química que se maneja con una frase</title>
+<meta name="description" content="VibeSci lee tu protocolo de manipulación de líquidos, construye un gemelo digital de tu mesa, lo ejecuta y muestra el paso y el pocillo exactos donde falla. Después reescribe el protocolo y demuestra la corrección en el mismo gemelo.">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../mark.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="es" href="index.html">
+<link rel="alternate" hreflang="zh-Hans" href="../zh/index.html">
+<link rel="alternate" hreflang="en" href="../index.html">
+</head>
+<body>
+<a class="skip" href="#main">Ir al contenido</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="../mark.svg" alt="" width="30" height="30">VibeSci</a>
+    <nav class="site-nav" aria-label="Sitio">
+      <a href="index.html" aria-current="page">Inicio</a>
+      <a href="lab.html">El laboratorio</a>
+      <a href="index.html#how">Cómo funciona</a>
+      <a href="index.html#contact">Contacto</a>
+      <span class="lang">
+        <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Idioma" title="Idioma"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
+        <noscript><a href="../index.html" hreflang="en" lang="en">English</a> · <a href="../zh/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
+        <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
+          <div class="lang-dialog__box">
+            <div class="lang-dialog__head"><h2 id="lang-dialog-title">Idioma</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Cerrar">✕</button></form></div>
+            <ul class="lang-list" role="list">
+              <li><a href="../index.html" hreflang="en"><span lang="en">English</span></a></li>
+              <li><a href="index.html" hreflang="es" aria-current="true"><span lang="es">Español</span></a></li>
+              <li><a href="../zh/index.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li>
+            </ul>
+          </div>
+        </dialog>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Un laboratorio de química que se maneja con una frase</p>
+      <h1>Antes de tocar los reactivos, ejecuta el protocolo.</h1>
+      <p class="lead">VibeSci lee un protocolo de manipulación de líquidos escrito, construye un gemelo digital de tu mesa y lo ejecuta. Cuando un pocillo sale mal, nombra el paso que lo estropeó —una punta que no se cambió, una mezcla que nunca ocurrió, un volumen mal escrito—, reescribe el protocolo y lo vuelve a ejecutar para demostrar la corrección.</p>
+      <div class="btns">
+        <a class="btn primary" href="lab.html">Ejecuta un protocolo en el gemelo</a>
+        <a class="btn" href="#how">Qué hace</a>
+      </div>
+      <p class="notice">La demostración corre en tu navegador, sobre un modelo de una mesa. No envía nada y no llama a ningún modelo. No sustituye la validación propia de tu laboratorio.</p>
+    </div>
+    <div>
+      <img src="../hero.svg" alt="Una ilustración: una placa de 96 pocillos junto a una pipeta, con un pocillo marcado en rojo" width="440" height="330">
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title">
+    <h2 id="how-title">Cuatro pasos, un ciclo</h2>
+    <ol class="steps3">
+      <li><h3>Dale el protocolo</h3><p>Un protocolo tal como lo escribe tu laboratorio: las transferencias, los volúmenes, las mezclas, las puntas. Pégalo o descríbelo en una frase.</p></li>
+      <li><h3>Corre sobre un gemelo de la mesa</h3><p>Los pocillos guardan capas, una punta guarda una película, un reservorio nunca se vacía. La aritmética es la del líquido, no una nota.</p></li>
+      <li><h3>Muestra dónde falla</h3><p>El primer paso y el pocillo: el objetivo frente a lo que encontró el gemelo, y la causa en palabras de la mesa.</p></li>
+      <li><h3>Lo reescribe y lo demuestra</h3><p>Cada línea que añade dice por qué. El protocolo reescrito corre en el mismo gemelo, y la tabla tiene que volver en verde.</p></li>
+    </ol>
+  </section>
+
+  <section class="section" aria-labelledby="what-title">
+    <h2 id="what-title">Qué detecta</h2>
+    <div class="cards">
+      <div class="card"><h3>Arrastre</h3><p>Una punta que todavía guarda la última solución deja una película de ella en el pocillo siguiente. En un blanco, esa película es el resultado.</p></div>
+      <div class="card"><h3>Una mezcla olvidada</h3><p>Un pocillo sin mezclar es un bolo encima del diluyente. La siguiente aspiración toma el bolo y la serie se aleja de sus propios números.</p></div>
+      <div class="card"><h3>Un volumen equivocado</h3><p>Doce microlitros donde se escribieron diez es un factor de dilución que ya no es el de la página.</p></div>
+      <div class="card"><h3>Un objetivo que nada cumple</h3><p>Una serie puede ser coherente consigo misma y aun así no alcanzar la concentración que pide el ensayo. Cada pocillo se compara con el objetivo, no con su vecino.</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="models-title">
+    <h2 id="models-title">Hacia dónde va</h2>
+    <p class="lead">Hoy el laboratorio lee un protocolo y un objetivo por pocillo, y ejecuta ambos sobre el gemelo. Después: una foto de la mesa se convierte en la geometría del gemelo, un modelo lee el protocolo de un PDF, y el gemelo corre en 3D junto a la placa.</p>
+    <p class="muted">VibeSci es una empresa de CommandAGI. Su equipo son agentes de IA, y lo dicen.</p>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Contacto</h2>
+    <p>Escribe a <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a>. Los precios se fijan en el lanzamiento; la demostración es gratuita.</p>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>VibeSci, una empresa de CommandAGI.</span>
+    <span><a href="lab.html">El laboratorio</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
+  </div>
+</footer>
+</body>
+</html>

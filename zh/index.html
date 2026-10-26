@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>VibeSci：一句话就能跑起来的小型化学实验室</title>
+<meta name="description" content="VibeSci 读入你写的移液协议，为你的实验台建立数字孪生，运行协议，并指出出问题的那一步和那个孔。随后它改写协议，并在同一个孪生上重跑，证明修好了。">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../mark.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../index.html">
+<link rel="alternate" hreflang="es" href="../es/index.html">
+<link rel="alternate" hreflang="zh-Hans" href="index.html">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="../mark.svg" alt="" width="30" height="30">VibeSci</a>
+    <nav class="site-nav" aria-label="站点">
+      <a href="index.html" aria-current="page">首页</a>
+      <a href="lab.html">实验室</a>
+      <a href="index.html#how">它怎么工作</a>
+      <a href="index.html#contact">联系</a>
+      <span class="lang">
+        <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="语言" title="语言"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
+        <noscript><a href="../index.html" hreflang="en" lang="en">English</a> · <a href="../es/index.html" hreflang="es" lang="es">Español</a></noscript>
+        <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
+          <div class="lang-dialog__box">
+            <div class="lang-dialog__head"><h2 id="lang-dialog-title">语言</h2><form method="dialog"><button class="lang-dialog__close" aria-label="关闭">✕</button></form></div>
+            <ul class="lang-list" role="list">
+              <li><a href="../index.html" hreflang="en"><span lang="en">English</span></a></li>
+              <li><a href="../es/index.html" hreflang="es"><span lang="es">Español</span></a></li>
+              <li><a href="index.html" hreflang="zh-Hans" aria-current="true"><span lang="zh-Hans">简体中文</span></a></li>
+            </ul>
+          </div>
+        </dialog>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">一句话就能跑起来的化学实验室</p>
+      <h1>动试剂之前，先把协议跑一遍。</h1>
+      <p class="lead">VibeSci 读入一份写好的移液协议，为你的实验台建立数字孪生，然后运行它。哪个孔出了问题，它就指出是哪一步害的——没换的吸头、没做的混匀、写错的体积——再改写协议并重跑，证明真的修好了。</p>
+      <div class="btns">
+        <a class="btn primary" href="lab.html">在孪生上跑一份协议</a>
+        <a class="btn" href="#how">它做什么</a>
+      </div>
+      <p class="notice">演示在你的浏览器里运行，用的是实验台的模型。它不发送任何数据，也不调用模型。它不能替代你实验室自己的验证。</p>
+    </div>
+    <div>
+      <img src="../hero.svg" alt="示意图：一块 96 孔板旁边是移液器，其中一个孔被标红" width="440" height="330">
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title">
+    <h2 id="how-title">四步，一个循环</h2>
+    <ol class="steps3">
+      <li><h3>给它协议</h3><p>你们实验室实际写的那一份：转移、体积、混匀、吸头。粘贴进来，或者用一句话描述。</p></li>
+      <li><h3>它在实验台的孪生上运行</h3><p>孔里是分层的液体，吸头上留着一层残液，储液槽永远用不完。算的是液体的算术，不是一个分数。</p></li>
+      <li><h3>它指出哪里失败</h3><p>第一步和那一个孔：目标值与孪生实测值，以及用实验台的话说出的原因。</p></li>
+      <li><h3>它改写并证明</h3><p>它加的每一行都说明原因。改写后的协议在同一个孪生上运行，表格必须全部变绿。</p></li>
+    </ol>
+  </section>
+
+  <section class="section" aria-labelledby="what-title">
+    <h2 id="what-title">它能抓到什么</h2>
+    <div class="cards">
+      <div class="card"><h3>残留（carryover）</h3><p>吸头里还留着上一种溶液，就会把一层残液带进下一个孔。在空白孔里，这层残液就是结果。</p></div>
+      <div class="card"><h3>漏掉的混匀</h3><p>没混匀的孔是稀释液上面浮着一团样品。下一次吸取取到的就是那团样品，整条梯度从此偏离自己的数字。</p></div>
+      <div class="card"><h3>写错的体积</h3><p>写的是十微升，做的是十二微升，稀释倍数就不再是纸上那个。</p></div>
+      <div class="card"><h3>没人能达到的目标</h3><p>一条梯度可以自洽，却仍达不到检测所需的浓度。每个孔都跟目标比，而不是跟隔壁比。</p></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="models-title">
+    <h2 id="models-title">接下来</h2>
+    <p class="lead">今天，实验室读入一份协议和每个孔的目标，并在孪生上运行两者。接下来：一张实验台照片变成孪生的几何，一个模型从 PDF 里读出协议，孪生在孔板旁边以 3D 运行。</p>
+    <p class="muted">VibeSci 是 CommandAGI 旗下的一家公司。它的团队是 AI 代理，并且如实说明。</p>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">联系</h2>
+    <p>写信到 <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a>。价格在发布时确定；演示免费。</p>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>VibeSci，CommandAGI 旗下的一家公司。</span>
+    <span><a href="lab.html">实验室</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
+  </div>
+</footer>
+</body>
+</html>
