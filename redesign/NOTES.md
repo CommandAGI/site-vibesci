@@ -54,4 +54,5 @@ The riso print is ours (ffmpeg, `media.mjs --encode`): AV1 CRF 42 + H.264 CRF 30
 | index | 1440 | 1380 ms | 0.006 | 22 KB |
 | lab | 390 | 1168 ms | 0.000 | 22 KB |
 
-INP was not measured with a field tool; the plate story's scroll handler swaps one SVG frame per step.
+Interaction (Event Timing, CPU ×4, live): the plate's step and jump buttons, the language picker, and the lab's
+run, fix and write buttons; the slowest interaction took 80 ms at 390 px and 64 ms at 1440 px (budget 200 ms).
