@@ -41,3 +41,17 @@ The riso print is ours (ffmpeg, `media.mjs --encode`): AV1 CRF 42 + H.264 CRF 30
 
 - The lab page opened 183 px down, its title under the header: the step log's `scrollIntoView` scrolled the page.
   It now scrolls only the log; `tests/pages.py` checks the lab opens at the top.
+- On slow 4G (150 ms, 1.6 Mbps, CPU ×4), the cover's CLS was 0.31 at 1440 px: the title's box was `12ch` wide and a
+  `ch` follows the face, so the title wrapped to one more line when Recursive arrived and moved the bottom-aligned
+  sheet. Widths are now in em (1 ch of Recursive = 0.6 em, measured), the fallback's `size-adjust` is measured
+  (100.5 %), and wide screens hang the sheet from the top.
+
+## Performance, measured live (2026-10-27, Chromium, slow 4G 150 ms / 1.6 Mbps, CPU ×4)
+
+| page | width | LCP | CLS | JS (transferred) |
+|---|---|---|---|---|
+| index | 390 | 1460 ms | 0.003 | 22 KB |
+| index | 1440 | 1380 ms | 0.006 | 22 KB |
+| lab | 390 | 1168 ms | 0.000 | 22 KB |
+
+INP was not measured with a field tool; the plate story's scroll handler swaps one SVG frame per step.

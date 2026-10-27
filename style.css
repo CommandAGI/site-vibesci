@@ -9,11 +9,12 @@
   font-weight: 350 900;
   font-display: swap;
 }
-/* metric-matched fallback so the swap does not move the page */
+/* metric-matched fallback so the swap does not move the page. Measures are in em, never ch: a ch follows the face,
+   so a ch-wide box changes width when the font arrives (1 ch of Recursive is 0.6 em). */
 @font-face {
   font-family: "Recursive Fallback";
   src: local("DejaVu Sans"), local("Verdana"), local("Arial");
-  size-adjust: 96%;
+  size-adjust: 100.5%;             /* measured: Recursive runs 4–6 % wider than DejaVu Sans across the page's weights */
   ascent-override: 95%;
   descent-override: 25%;
 }
@@ -162,9 +163,12 @@ img, svg, video, canvas { max-width: 100%; display: block; }
 .film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--paper-2) center / cover no-repeat; }
 .cover .film { mix-blend-mode: multiply; }
 .cover__sheet { position: relative; padding: clamp(24px, 6vh, 72px) var(--gutter) clamp(28px, 7vh, 84px); max-width: 1500px; }
-.cover h1 { font-size: var(--step-4); max-width: 12ch; }
+.cover h1 { font-size: var(--step-4); max-width: 7.2em; }
+/* Wide screens hang the sheet from the top: bottom-aligned, the font's arrival moved the whole sheet (CLS 0.31 on slow 4G).
+   Narrow screens keep it at the bottom, clear of the film note that spans their top. */
+@media (min-width: 900px) { .cover { align-items: start; } .cover__sheet { padding-top: clamp(56px, 9vh, 120px); } }
 .entry { margin: 0 0 18px; display: flex; flex-wrap: wrap; gap: 8px 16px; }
-.cover__lede { max-width: 34ch; font-size: var(--step-1); line-height: 1.35; margin: 22px 0 26px; font-weight: 520; background: color-mix(in oklch, var(--paper) 80%, transparent); padding: 6px 10px 6px 0; box-shadow: -10px 0 0 color-mix(in oklch, var(--paper) 80%, transparent); }
+.cover__lede { max-width: 20.4em; font-size: var(--step-1); line-height: 1.35; margin: 22px 0 26px; font-weight: 520; background: color-mix(in oklch, var(--paper) 80%, transparent); padding: 6px 10px 6px 0; box-shadow: -10px 0 0 color-mix(in oklch, var(--paper) 80%, transparent); }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin: 0; }
 .film-note { position: absolute; right: var(--gutter); top: 16px; margin: 0; display: flex; gap: 8px; align-items: center; }
 .film-toggle { font: inherit; font-size: 0.78rem; font-variation-settings: "MONO" 1, "CASL" 0; font-weight: 600; text-transform: uppercase; padding: 4px 10px; min-height: 32px; border: 2px solid var(--teal-deep); background: var(--paper); color: var(--teal-deep); cursor: pointer; }
@@ -195,7 +199,7 @@ img, svg, video, canvas { max-width: 100%; display: block; }
 .plate .ring { fill: none; stroke: var(--pink-deep); stroke-width: 4; stroke-dasharray: 3 3; }
 .plate .tip { stroke: var(--teal-deep); stroke-width: 4; fill: none; transition: transform 200ms cubic-bezier(.3,1.4,.6,1); }
 .plate .tip-end { fill: var(--teal-deep); }
-.caption { margin: 0; min-height: 5.4em; font-size: var(--step-1); font-weight: 600; line-height: 1.3; max-width: 40ch; }
+.caption { margin: 0; min-height: 5.4em; font-size: var(--step-1); font-weight: 600; line-height: 1.3; max-width: 24em; }
 .caption b { color: var(--pink-deep); font-weight: 820; }
 .stamp {
   position: absolute; right: 6%; top: 18%;
@@ -214,7 +218,7 @@ img, svg, video, canvas { max-width: 100%; display: block; }
 .tape { flex: 1 1 auto; list-style: none; margin: 0; padding: 0; overflow: hidden; min-height: 80px; border-left: 3px solid var(--teal-deep);
   mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); position: relative; }
 .tape__inner { position: absolute; left: 0; right: 0; top: 50%; transition: transform 140ms linear; }
-.tape li { display: grid; grid-template-columns: 3.2ch 1fr; gap: 10px; padding: 1px 10px; font-size: var(--step--1); font-variation-settings: "MONO" 1, "CASL" 0; white-space: nowrap; color: color-mix(in oklch, var(--teal-deep) 55%, var(--paper)); }
+.tape li { display: grid; grid-template-columns: 1.92em 1fr; gap: 10px; padding: 1px 10px; font-size: var(--step--1); font-variation-settings: "MONO" 1, "CASL" 0; white-space: nowrap; color: color-mix(in oklch, var(--teal-deep) 55%, var(--paper)); }
 .tape li .ln { text-align: right; opacity: 0.7; }
 .tape li.done { color: var(--teal-deep); }
 .tape li.now { color: var(--teal-deep); background: var(--mint); font-weight: 700; }
@@ -231,7 +235,7 @@ img, svg, video, canvas { max-width: 100%; display: block; }
 .slide__n { grid-column: 1 / 3; align-self: start; font-size: clamp(4rem, 2rem + 9vw, 12rem); font-weight: 900; line-height: 0.8; color: transparent; -webkit-text-stroke: 2px var(--teal-deep); font-variation-settings: "CASL" 1, "MONO" 0; text-shadow: 0.03em 0.02em 0 var(--pink); }
 .slide__text { grid-column: 3 / 7; }
 .slide__text h3 { font-size: var(--step-3); margin-bottom: 18px; }
-.slide__text p { font-size: var(--step-1); line-height: 1.35; margin: 0; max-width: 26ch; font-weight: 500; }
+.slide__text p { font-size: var(--step-1); line-height: 1.35; margin: 0; max-width: 15.6em; font-weight: 500; }
 .slide__pic { grid-column: 7 / 13; position: relative; margin: 0; }
 .slide__pic .film { position: relative; inset: auto; aspect-ratio: 16 / 10; height: auto; mix-blend-mode: multiply; outline: 3px solid var(--teal-deep); box-shadow: 10px 10px 0 var(--pink); }
 .slide__pic figcaption { margin-top: 18px; }
@@ -256,8 +260,8 @@ img, svg, video, canvas { max-width: 100%; display: block; }
 /* ---- the full screen of film with one line ------------------------------------------------------------- */
 .reel { position: relative; min-height: 100svh; display: grid; align-items: center; border-top: 3px solid var(--teal-deep); overflow: clip; }
 .reel .film { mix-blend-mode: multiply; opacity: 0.55; }
-.reel__line { position: relative; margin: 0 var(--gutter); max-width: 16ch; font-size: var(--step-4); }
-.reel__code { position: relative; margin: 26px var(--gutter) 0; max-width: 62ch; padding: 14px 18px; background: var(--paper); border: 3px solid var(--teal-deep); box-shadow: 8px 8px 0 var(--pink); font-size: var(--step--1); white-space: pre-wrap; }
+.reel__line { position: relative; margin: 0 var(--gutter); max-width: 9.6em; font-size: var(--step-4); }
+.reel__code { position: relative; margin: 26px var(--gutter) 0; max-width: 37.2em; padding: 14px 18px; background: var(--paper); border: 3px solid var(--teal-deep); box-shadow: 8px 8px 0 var(--pink); font-size: var(--step--1); white-space: pre-wrap; }
 .reel__code .why { color: var(--pink-deep); }
 .reel .film-label { position: absolute; right: var(--gutter); bottom: 16px; margin: 0; }
 
@@ -266,7 +270,7 @@ img, svg, video, canvas { max-width: 100%; display: block; }
 .open h2 { grid-column: 1 / 9; font-size: var(--step-4); }
 .open p { grid-column: 1 / 7; font-size: var(--step-1); margin: 0; }
 .open .cta-row { grid-column: 1 / -1; }
-.open .notice { grid-column: 1 / 7; margin: 0; font-size: var(--step--1); font-variation-settings: "MONO" 1, "CASL" 0; max-width: 60ch; }
+.open .notice { grid-column: 1 / 7; margin: 0; font-size: var(--step--1); font-variation-settings: "MONO" 1, "CASL" 0; max-width: 36em; }
 .plans { padding: 48px var(--gutter) 64px; border-top: 3px solid var(--teal-deep); background: var(--paper-2); }
 .plans h2 { font-size: var(--step-2); margin-bottom: 22px; }
 .plans ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 0; }
@@ -283,7 +287,7 @@ img, svg, video, canvas { max-width: 100%; display: block; }
 .lab { padding: 28px var(--gutter) 64px; }
 .lab__head { display: grid; gap: 14px; margin-bottom: 26px; }
 .lab__head h1 { font-size: var(--step-3); }
-.lab__head p { max-width: 62ch; margin: 0; font-weight: 500; }
+.lab__head p { max-width: 37.2em; margin: 0; font-weight: 500; }
 .prompt { display: flex; gap: 12px; margin: 0 0 28px; flex-wrap: wrap; }
 .prompt input { flex: 1 1 280px; min-height: 48px; font: inherit; font-variation-settings: "MONO" 1, "CASL" 0; padding: 10px 14px; border: 3px solid var(--teal-deep); background: var(--paper); color: var(--teal-deep); border-radius: 0; }
 .console { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 28px; align-items: start; }
@@ -303,7 +307,7 @@ textarea { width: 100%; min-height: 260px; resize: vertical; font: inherit; font
 .problems { border: 3px dashed var(--pink-deep); padding: 10px 14px; color: var(--pink-deep); }
 .problems ul { margin: 6px 0 0; padding-left: 18px; }
 .log { list-style: none; margin: 0; padding: 0; max-height: 260px; overflow: auto; border-top: 2px solid var(--teal-deep); font-size: var(--step--1); font-variation-settings: "MONO" 1, "CASL" 0; }
-.log li { display: grid; grid-template-columns: 5.5ch 1fr; gap: 10px; padding: 4px 6px; border-bottom: 1px solid var(--rule); }
+.log li { display: grid; grid-template-columns: 3.3em 1fr; gap: 10px; padding: 4px 6px; border-bottom: 1px solid var(--rule); }
 .log li.now { background: var(--mint); font-weight: 700; }
 .log li.warn { color: var(--pink-deep); }
 .log li .n { opacity: 0.7; }
