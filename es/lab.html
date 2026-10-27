@@ -3,125 +3,126 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>El laboratorio · VibeSci</title>
-<meta name="description" content="Ejecuta un protocolo de manipulación de líquidos sobre el gemelo de la mesa de VibeSci: el registro de pasos, el pocillo que falla, la causa y el protocolo reescrito demostrado en el mismo gemelo.">
+<meta name="description" content="Ejecuta un protocolo de manipulación de líquidos en el gemelo de la mesa de VibeSci: el registro de pasos, el pocillo que falla, la causa y el protocolo reescrito, demostrado en el mismo gemelo.">
+<meta name="theme-color" content="#f6efe1">
+<meta property="og:title" content="El laboratorio · VibeSci">
+<meta property="og:description" content="Ejecuta un protocolo de manipulación de líquidos en el gemelo de la mesa de VibeSci: el registro de pasos, el pocillo que falla, la causa y el protocolo reescrito, demostrado en el mismo gemelo.">
+<meta property="og:image" content="https://vibesci.commandagi.app/og.png">
+<meta property="og:url" content="https://vibesci.commandagi.app/es/lab.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../fonts/recursive.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
 <link rel="icon" href="../mark.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="es" href="lab.html">
-<link rel="alternate" hreflang="zh-Hans" href="../zh/lab.html">
+<link rel="apple-touch-icon" href="../touch-icon.png">
 <link rel="alternate" hreflang="en" href="../lab.html">
+<link rel="alternate" hreflang="es" href="../es/lab.html">
+<link rel="alternate" hreflang="zh-Hans" href="../zh/lab.html">
 </head>
-<body>
-<a class="skip" href="#main">Ir al contenido</a>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="index.html"><img src="../mark.svg" alt="" width="30" height="30">VibeSci</a>
-    <nav class="site-nav" aria-label="Sitio">
-      <a href="index.html">Inicio</a>
-      <a href="lab.html" aria-current="page">El laboratorio</a>
-      <a href="index.html#how">Cómo funciona</a>
-      <a href="index.html#contact">Contacto</a>
-      <span class="lang">
-        <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Idioma" title="Idioma"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
-        <noscript><a href="../lab.html" hreflang="en" lang="en">English</a> · <a href="../zh/lab.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
-        <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
-          <div class="lang-dialog__box">
-            <div class="lang-dialog__head"><h2 id="lang-dialog-title">Idioma</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Cerrar">✕</button></form></div>
-            <ul class="lang-list" role="list">
-              <li><a href="../lab.html" hreflang="en"><span lang="en">English</span></a></li>
-              <li><a href="lab.html" hreflang="es" aria-current="true"><span lang="es">Español</span></a></li>
-              <li><a href="../zh/lab.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li>
-            </ul>
-          </div>
-        </dialog>
-      </span>
-    </nav>
-  </div>
+<body class="lab">
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="head">
+  <a class="wordmark" href="index.html"><img src="../wordmark.svg" alt="VibeSci" width="197" height="40"></a>
+  <nav class="tabs" aria-label="Sitio">
+    <a class="tab" href="index.html#bench"><span class="n">01</span> <span class="w">La mesa</span></a>
+    <a class="tab" href="lab.html" aria-current="page"><span class="n">02</span> <span class="w">El laboratorio</span></a>
+    <a class="tab" href="index.html#catches"><span class="n">03</span> <span class="w">Qué detecta</span></a>
+    <a class="tab" href="index.html#contact"><span class="n">04</span> <span class="w">Contacto</span></a>
+    <span class="lang">
+      <button type="button" class="tab lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Idioma" title="Idioma"><span aria-hidden="true">A/<span lang="zh-Hans">文</span></span></button>
+      <noscript><a href="../lab.html" hreflang="en" lang="en">English</a> · <a href="../zh/lab.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
+    </span>
+  </nav>
+  <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
+    <div class="lang-dialog__box">
+      <div class="lang-dialog__head"><h2 id="lang-dialog-title">Idioma</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Cerrar">✕</button></form></div>
+      <ul class="lang-list" role="list"><li><a href="../lab.html" hreflang="en"><span lang="en">English</span></a></li><li><a href="../es/lab.html" hreflang="es" aria-current="true"><span lang="es">Español</span></a></li><li><a href="../zh/lab.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li></ul>
+    </div>
+  </dialog>
 </header>
-
-<main id="main" class="wrap">
-  <section class="section" style="padding-top:28px">
-    <h1 style="font-size:clamp(1.6rem,3vw,2.2rem)">El laboratorio</h1>
-    <p class="lead">Un protocolo a la izquierda, la mesa a la derecha. Ejecútalo, mira el registro de pasos y luego pídele a VibeSci que lo arregle: la reescritura corre en el mismo gemelo y la tabla tiene que volver en verde.</p>
-    <div class="prompt">
-      <input type="text" id="prompt" aria-label="Describe el protocolo en una frase" placeholder="una dilución 1:10 de un patrón 1 M en A1..A8, blancos en la fila B">
-      <button type="button" class="btn" id="build">Escríbelo</button>
-    </div>
-
-    <div class="console">
-      <div class="panel">
-        <div class="field">
-          <label for="protocol">El protocolo, tal como lo escribió el laboratorio</label>
-          <textarea id="protocol" spellcheck="false" aria-describedby="protocolhelp"></textarea>
-          <p id="protocolhelp" class="muted" style="font-size:0.85rem;margin:0">Un paso por línea: <code>pick tip</code>, <code>aspirate 10 µL from A1</code>, <code>dispense 10 µL into A2</code>, <code>mix A2</code>, <code>eject tip</code>, <code>add 90 µL buffer to A1..A8</code>. <code>reservoir stock = 1 M</code> nombra una botella.</p>
-        </div>
-        <div class="field">
-          <label for="targets">El objetivo por pocillo</label>
-          <textarea id="targets" spellcheck="false"></textarea>
-        </div>
-        <div class="row">
-          <button type="button" class="btn primary" id="run">Ejecútalo en el gemelo</button>
-          <button type="button" class="btn" id="fix">VibeSci, corrígelo</button>
-        </div>
-        <div class="problems" id="problems" hidden></div>
-        <div class="problems" id="targetproblems" hidden></div>
-      </div>
-
-      <div class="panel">
-        <canvas id="stage" width="720" height="360" role="img" aria-label="Una placa de 96 pocillos vista desde la mesa, con los pocillos coloreados por lo que contienen"></canvas>
-        <div class="row" style="justify-content:space-between;margin-top:10px">
-          <span class="row">
-            <button type="button" class="btn small" id="back" aria-label="Paso anterior">◀</button>
-            <button type="button" class="btn small" id="replay">Repetir</button>
-            <button type="button" class="btn small" id="forward" aria-label="Paso siguiente">▶</button>
-          </span>
-          <span id="stepcount">Paso 1</span>
-        </div>
-        <div class="verdict" id="verdict" hidden></div>
-        <h3 style="margin-top:16px">Lo que hizo la mesa</h3>
-        <ol class="log" id="steps"></ol>
-        <h3 style="margin-top:16px">Lo que notó la mesa</h3>
-        <ul class="log" id="warnings"></ul>
-      </div>
-    </div>
-
-    <section class="section" aria-labelledby="table-title">
-      <h2 id="table-title" style="font-size:1.3rem">El objetivo frente al gemelo</h2>
-      <table class="results" id="results">
-        <thead><tr><th scope="col">Pocillo</th><th scope="col">Objetivo</th><th scope="col">Lo que encontró el gemelo</th><th scope="col">Veredicto</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
-    <section class="section" aria-labelledby="fix-title">
-      <h2 id="fix-title" style="font-size:1.3rem">La reescritura</h2>
-      <div class="verdict" id="fixverdict" hidden></div>
-      <div class="two">
-        <div>
-          <h3>Lo que VibeSci reescribió</h3>
-          <ul class="changes" id="changes"><li class="none muted">Pide la corrección y cada línea que añade aparece aquí, con su razón.</li></ul>
-        </div>
-        <div>
-          <h3>El protocolo después de la reescritura</h3>
-          <pre class="code" id="fixedcode" hidden></pre>
-          <h3 style="margin-top:14px">La ejecución reescrita</h3>
-          <table class="results" id="after">
-            <thead><tr><th scope="col">Pocillo</th><th scope="col">Lo que encontró el gemelo</th><th scope="col">Veredicto</th></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  </section>
-</main>
-
-<footer class="site-foot">
-  <div class="wrap">
-    <span>VibeSci, una empresa de CommandAGI.</span>
-    <span><a href="index.html">Inicio</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
+<main id="main" class="lab">
+  <div class="lab__head">
+    <p class="lab__flags"><span class="flag sim">Simulado en el gemelo</span><span class="flag unverified">No verificado en una mesa</span></p>
+    <h1 class="misreg">El laboratorio</h1>
+    <p>Un protocolo a la izquierda, la mesa a la derecha. Ejecútalo, lee el registro de pasos y luego pídele a VibeSci que lo arregle: la reescritura corre en el mismo gemelo y la tabla tiene que volver limpia.</p>
   </div>
+  <div class="prompt">
+    <input type="text" id="prompt" aria-label="Describe el protocolo en una frase">
+    <button type="button" class="btn quiet" id="build">Escríbelo</button>
+  </div>
+
+  <div class="console">
+    <div class="panel">
+      <div class="field">
+        <label for="protocol">El protocolo, tal como lo escribió el laboratorio</label>
+        <textarea id="protocol" spellcheck="false" aria-describedby="protocolhelp"></textarea>
+        <p id="protocolhelp" class="muted" style="font-size:0.85rem;margin:0">Un paso por línea: <code>pick tip</code>, <code>aspirate 10 µL from A1</code>, <code>dispense 10 µL into A2</code>, <code>mix A2</code>, <code>eject tip</code>, <code>add 90 µL buffer to A1..A8</code>. <code>reservoir stock = 1 M</code> nombra una botella.</p>
+      </div>
+      <div class="field">
+        <label for="targets">El objetivo por pocillo</label>
+        <textarea id="targets" spellcheck="false"></textarea>
+      </div>
+      <div class="row">
+        <button type="button" class="btn" id="run">Ejecútalo en el gemelo</button>
+        <button type="button" class="btn quiet" id="fix">VibeSci, corrígelo</button>
+      </div>
+      <div class="problems" id="problems" hidden></div>
+      <div class="problems" id="targetproblems" hidden></div>
+    </div>
+
+    <div class="panel">
+      <canvas id="stage" width="720" height="360" role="img" aria-label="Una placa de 96 pocillos vista desde la mesa, con los pocillos coloreados según lo que contienen"></canvas>
+      <div class="row" style="justify-content:space-between">
+        <span class="row">
+          <button type="button" class="btn small quiet" id="back" aria-label="Paso anterior">◀</button>
+          <button type="button" class="btn small quiet" id="replay">Repetir</button>
+          <button type="button" class="btn small quiet" id="forward" aria-label="Paso siguiente">▶</button>
+        </span>
+        <span id="stepcount" class="mono">Paso 1</span>
+      </div>
+      <div class="verdict" id="verdict" role="status" hidden></div>
+      <h3>Lo que hizo la mesa</h3>
+      <ol class="log" id="steps"></ol>
+      <h3>Lo que notó la mesa</h3>
+      <ul class="log" id="warnings"></ul>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="table-title">
+    <h2 id="table-title" class="misreg">El objetivo frente al gemelo</h2>
+    <table class="results" id="results">
+      <thead><tr><th scope="col">Pocillo</th><th scope="col">Objetivo</th><th scope="col">Lo que encontró el gemelo</th><th scope="col">Veredicto</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="fix-title">
+    <h2 id="fix-title" class="misreg">La reescritura</h2>
+    <div class="verdict" id="fixverdict" role="status" hidden></div>
+    <div class="two">
+      <div>
+        <h3>Lo que VibeSci reescribió</h3>
+        <ul class="changes" id="changes"><li class="none muted">Pide la corrección y cada línea que añade aparece aquí, con su razón.</li></ul>
+      </div>
+      <div>
+        <h3>El protocolo después de la reescritura</h3>
+        <pre class="code" id="fixedcode" hidden></pre>
+        <h3>La ejecución reescrita</h3>
+        <table class="results" id="after">
+          <thead><tr><th scope="col">Pocillo</th><th scope="col">Lo que encontró el gemelo</th><th scope="col">Veredicto</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <p class="notice mono" style="margin-top:40px">La demostración corre sobre un modelo de una mesa. No sustituye la validación propia de tu laboratorio.</p>
+</main>
+<footer class="foot">
+  <span>VibeSci es una empresa de CommandAGI. Su equipo son agentes de IA, y lo dicen. Los precios se fijan en el lanzamiento; la demostración es gratuita.</span>
+  <span><a href="index.html">La mesa</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
 </footer>
 <script type="module" src="../app/lab.js"></script>
+<script type="module" src="../app/lang.js"></script>
 </body>
 </html>

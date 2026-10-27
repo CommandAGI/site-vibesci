@@ -3,97 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>VibeSci: un pequeño laboratorio de química que se maneja con una frase</title>
-<meta name="description" content="VibeSci lee tu protocolo de manipulación de líquidos, construye un gemelo digital de tu mesa, lo ejecuta y muestra el paso y el pocillo exactos donde falla. Después reescribe el protocolo y demuestra la corrección en el mismo gemelo.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>VibeSci: ejecuta el protocolo antes que los reactivos</title>
+<meta name="description" content="VibeSci lee un protocolo de manipulación de líquidos, lo ejecuta en un gemelo de tu mesa, nombra el paso y el pocillo que fallan, reescribe el protocolo y demuestra la corrección en el mismo gemelo.">
+<meta name="theme-color" content="#f6efe1">
+<meta property="og:title" content="VibeSci: ejecuta el protocolo antes que los reactivos">
+<meta property="og:description" content="VibeSci lee un protocolo de manipulación de líquidos, lo ejecuta en un gemelo de tu mesa, nombra el paso y el pocillo que fallan, reescribe el protocolo y demuestra la corrección en el mismo gemelo.">
+<meta property="og:image" content="https://vibesci.commandagi.app/og.png">
+<meta property="og:url" content="https://vibesci.commandagi.app/es/index.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../fonts/recursive.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
 <link rel="icon" href="../mark.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="es" href="index.html">
-<link rel="alternate" hreflang="zh-Hans" href="../zh/index.html">
+<link rel="apple-touch-icon" href="../touch-icon.png">
 <link rel="alternate" hreflang="en" href="../index.html">
+<link rel="alternate" hreflang="es" href="../es/index.html">
+<link rel="alternate" hreflang="zh-Hans" href="../zh/index.html">
 </head>
-<body>
-<a class="skip" href="#main">Ir al contenido</a>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="index.html"><img src="../mark.svg" alt="" width="30" height="30">VibeSci</a>
-    <nav class="site-nav" aria-label="Sitio">
-      <a href="index.html" aria-current="page">Inicio</a>
-      <a href="lab.html">El laboratorio</a>
-      <a href="index.html#how">Cómo funciona</a>
-      <a href="index.html#contact">Contacto</a>
-      <span class="lang">
-        <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Idioma" title="Idioma"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
-        <noscript><a href="../index.html" hreflang="en" lang="en">English</a> · <a href="../zh/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
-        <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
-          <div class="lang-dialog__box">
-            <div class="lang-dialog__head"><h2 id="lang-dialog-title">Idioma</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Cerrar">✕</button></form></div>
-            <ul class="lang-list" role="list">
-              <li><a href="../index.html" hreflang="en"><span lang="en">English</span></a></li>
-              <li><a href="index.html" hreflang="es" aria-current="true"><span lang="es">Español</span></a></li>
-              <li><a href="../zh/index.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li>
-            </ul>
-          </div>
-        </dialog>
-      </span>
-    </nav>
-  </div>
+<body class="index">
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="head">
+  <a class="wordmark" href="index.html"><img src="../wordmark.svg" alt="VibeSci" width="197" height="40"></a>
+  <nav class="tabs" aria-label="Sitio">
+    <a class="tab" href="#bench" aria-current="page"><span class="n">01</span> <span class="w">La mesa</span></a>
+    <a class="tab" href="lab.html"><span class="n">02</span> <span class="w">El laboratorio</span></a>
+    <a class="tab" href="#catches"><span class="n">03</span> <span class="w">Qué detecta</span></a>
+    <a class="tab" href="#contact"><span class="n">04</span> <span class="w">Contacto</span></a>
+    <span class="lang">
+      <button type="button" class="tab lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Idioma" title="Idioma"><span aria-hidden="true">A/<span lang="zh-Hans">文</span></span></button>
+      <noscript><a href="../index.html" hreflang="en" lang="en">English</a> · <a href="../zh/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
+    </span>
+  </nav>
+  <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
+    <div class="lang-dialog__box">
+      <div class="lang-dialog__head"><h2 id="lang-dialog-title">Idioma</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Cerrar">✕</button></form></div>
+      <ul class="lang-list" role="list"><li><a href="../index.html" hreflang="en"><span lang="en">English</span></a></li><li><a href="../es/index.html" hreflang="es" aria-current="true"><span lang="es">Español</span></a></li><li><a href="../zh/index.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li></ul>
+    </div>
+  </dialog>
 </header>
+<main id="main">
+  <section class="cover" aria-labelledby="cover-h">
+    <video class="film" muted loop playsinline preload="metadata" poster="../media/drop.webp" aria-hidden="true" tabindex="-1"><source src="../media/drop.webm" type="video/webm; codecs=av01.0.05M.08"><source src="../media/drop.mp4" type="video/mp4"></video>
+    <p class="film-note"><span class="flag unverified">Película: generada con fal, impresa en dos tintas. No es metraje de laboratorio.</span> <button type="button" class="film-toggle" data-films aria-pressed="false">Pausar las películas</button></p>
+    <div class="cover__sheet">
+      <p class="entry label"><span>Entrada 001</span><span>Cuaderno de laboratorio</span><span>Mesa: un gemelo</span></p>
+      <h1 id="cover-h" class="misreg">Ejecuta el protocolo <em>antes</em> que los reactivos.</h1>
+      <p class="cover__lede">Pega un protocolo de manipulación de líquidos. VibeSci lo ejecuta en un gemelo de tu mesa, nombra el paso y el pocillo que fallan, y demuestra la reescritura.</p>
+      <p class="cta-row"><a class="print" href="lab.html">Ejecuta uno en el gemelo →</a> <a class="pencil" href="#bench">Mira fallar una placa ↓</a></p>
+    </div>
+  </section>
 
-<main id="main" class="wrap">
-  <section class="hero">
-    <div>
-      <p class="eyebrow">Un laboratorio de química que se maneja con una frase</p>
-      <h1>Antes de tocar los reactivos, ejecuta el protocolo.</h1>
-      <p class="lead">VibeSci lee un protocolo de manipulación de líquidos escrito, construye un gemelo digital de tu mesa y lo ejecuta. Cuando un pocillo sale mal, nombra el paso que lo estropeó —una punta que no se cambió, una mezcla que nunca ocurrió, un volumen mal escrito—, reescribe el protocolo y lo vuelve a ejecutar para demostrar la corrección.</p>
-      <div class="btns">
-        <a class="btn primary" href="lab.html">Ejecuta un protocolo en el gemelo</a>
-        <a class="btn" href="#how">Qué hace</a>
+  <section id="bench" class="bench" aria-labelledby="bench-h">
+    <div class="bench__track">
+      <div class="bench__stick">
+        <header class="bench__head">
+          <h2 id="bench-h" class="misreg">Una serie de diluciones de un martes.</h2>
+          <p class="bench__flags"><span class="flag sim">Simulado en el gemelo</span><span class="flag unverified">No verificado en una mesa</span></p>
+        </header>
+        <figure class="plate-fig">
+          <div class="plate-wrap"><svg class="plate" viewBox="0 0 544 384" role="img" aria-labelledby="plate-title"><title id="plate-title">Una placa de 96 pocillos vista desde arriba: el líquido es menta, y cuanto más lleva un pocillo, más rosa es.</title><rect class="frame-pink" x="16" y="15" width="524" height="364"/><rect class="frame" x="10" y="10" width="524" height="364"/><text class="tick" x="66" y="36" text-anchor="middle">1</text><text class="tick" x="106" y="36" text-anchor="middle">2</text><text class="tick" x="146" y="36" text-anchor="middle">3</text><text class="tick" x="186" y="36" text-anchor="middle">4</text><text class="tick" x="226" y="36" text-anchor="middle">5</text><text class="tick" x="266" y="36" text-anchor="middle">6</text><text class="tick" x="306" y="36" text-anchor="middle">7</text><text class="tick" x="346" y="36" text-anchor="middle">8</text><text class="tick" x="386" y="36" text-anchor="middle">9</text><text class="tick" x="426" y="36" text-anchor="middle">10</text><text class="tick" x="466" y="36" text-anchor="middle">11</text><text class="tick" x="506" y="36" text-anchor="middle">12</text><text class="tick" x="26" y="71" text-anchor="middle">A</text><circle class="rim" cx="66" cy="66" r="16"/><circle class="fill" data-well="A1" cx="66" cy="66" r="14" fill="#f55ab4"/><circle class="rim" cx="106" cy="66" r="16"/><circle class="fill" data-well="A2" cx="106" cy="66" r="14" fill="#eb6db9"/><circle class="ring" data-ring="A2" cx="106" cy="66" r="20"/><circle class="rim" cx="146" cy="66" r="16"/><circle class="fill" data-well="A3" cx="146" cy="66" r="14" fill="#e080bd"/><circle class="ring" data-ring="A3" cx="146" cy="66" r="20"/><circle class="rim" cx="186" cy="66" r="16"/><circle class="fill" data-well="A4" cx="186" cy="66" r="14" fill="#d890c0"/><circle class="ring" data-ring="A4" cx="186" cy="66" r="20"/><circle class="rim" cx="226" cy="66" r="16"/><circle class="fill" data-well="A5" cx="226" cy="66" r="14" fill="#d09fc4"/><circle class="ring" data-ring="A5" cx="226" cy="66" r="20"/><circle class="rim" cx="266" cy="66" r="16"/><circle class="fill" data-well="A6" cx="266" cy="66" r="14" fill="#a4efd6"/><circle class="ring" data-ring="A6" cx="266" cy="66" r="20"/><circle class="rim" cx="306" cy="66" r="16"/><circle class="fill" data-well="A7" cx="306" cy="66" r="14" fill="#c7aec7"/><circle class="ring" data-ring="A7" cx="306" cy="66" r="20"/><circle class="rim" cx="346" cy="66" r="16"/><circle class="fill" data-well="A8" cx="346" cy="66" r="14" fill="#c2b9ca"/><circle class="ring" data-ring="A8" cx="346" cy="66" r="20"/><circle class="rim" cx="386" cy="66" r="16"/><circle class="fill" data-well="A9" cx="386" cy="66" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="66" r="16"/><circle class="fill" data-well="A10" cx="426" cy="66" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="66" r="16"/><circle class="fill" data-well="A11" cx="466" cy="66" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="66" r="16"/><circle class="fill" data-well="A12" cx="506" cy="66" r="0" fill="#f6efe1"/><text class="tick" x="26" y="111" text-anchor="middle">B</text><circle class="rim" cx="66" cy="106" r="16"/><circle class="fill" data-well="B1" cx="66" cy="106" r="14" fill="#b7ccce"/><circle class="rim" cx="106" cy="106" r="16"/><circle class="fill" data-well="B2" cx="106" cy="106" r="14" fill="#a9e6d4"/><circle class="rim" cx="146" cy="106" r="16"/><circle class="fill" data-well="B3" cx="146" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="186" cy="106" r="16"/><circle class="fill" data-well="B4" cx="186" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="226" cy="106" r="16"/><circle class="fill" data-well="B5" cx="226" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="266" cy="106" r="16"/><circle class="fill" data-well="B6" cx="266" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="306" cy="106" r="16"/><circle class="fill" data-well="B7" cx="306" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="346" cy="106" r="16"/><circle class="fill" data-well="B8" cx="346" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="386" cy="106" r="16"/><circle class="fill" data-well="B9" cx="386" cy="106" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="106" r="16"/><circle class="fill" data-well="B10" cx="426" cy="106" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="106" r="16"/><circle class="fill" data-well="B11" cx="466" cy="106" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="106" r="16"/><circle class="fill" data-well="B12" cx="506" cy="106" r="0" fill="#f6efe1"/><text class="tick" x="26" y="151" text-anchor="middle">C</text><circle class="rim" cx="66" cy="146" r="16"/><circle class="fill" data-well="C1" cx="66" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="146" r="16"/><circle class="fill" data-well="C2" cx="106" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="146" r="16"/><circle class="fill" data-well="C3" cx="146" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="146" r="16"/><circle class="fill" data-well="C4" cx="186" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="146" r="16"/><circle class="fill" data-well="C5" cx="226" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="146" r="16"/><circle class="fill" data-well="C6" cx="266" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="146" r="16"/><circle class="fill" data-well="C7" cx="306" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="146" r="16"/><circle class="fill" data-well="C8" cx="346" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="146" r="16"/><circle class="fill" data-well="C9" cx="386" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="146" r="16"/><circle class="fill" data-well="C10" cx="426" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="146" r="16"/><circle class="fill" data-well="C11" cx="466" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="146" r="16"/><circle class="fill" data-well="C12" cx="506" cy="146" r="0" fill="#f6efe1"/><text class="tick" x="26" y="191" text-anchor="middle">D</text><circle class="rim" cx="66" cy="186" r="16"/><circle class="fill" data-well="D1" cx="66" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="186" r="16"/><circle class="fill" data-well="D2" cx="106" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="186" r="16"/><circle class="fill" data-well="D3" cx="146" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="186" r="16"/><circle class="fill" data-well="D4" cx="186" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="186" r="16"/><circle class="fill" data-well="D5" cx="226" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="186" r="16"/><circle class="fill" data-well="D6" cx="266" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="186" r="16"/><circle class="fill" data-well="D7" cx="306" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="186" r="16"/><circle class="fill" data-well="D8" cx="346" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="186" r="16"/><circle class="fill" data-well="D9" cx="386" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="186" r="16"/><circle class="fill" data-well="D10" cx="426" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="186" r="16"/><circle class="fill" data-well="D11" cx="466" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="186" r="16"/><circle class="fill" data-well="D12" cx="506" cy="186" r="0" fill="#f6efe1"/><text class="tick" x="26" y="231" text-anchor="middle">E</text><circle class="rim" cx="66" cy="226" r="16"/><circle class="fill" data-well="E1" cx="66" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="226" r="16"/><circle class="fill" data-well="E2" cx="106" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="226" r="16"/><circle class="fill" data-well="E3" cx="146" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="226" r="16"/><circle class="fill" data-well="E4" cx="186" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="226" r="16"/><circle class="fill" data-well="E5" cx="226" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="226" r="16"/><circle class="fill" data-well="E6" cx="266" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="226" r="16"/><circle class="fill" data-well="E7" cx="306" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="226" r="16"/><circle class="fill" data-well="E8" cx="346" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="226" r="16"/><circle class="fill" data-well="E9" cx="386" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="226" r="16"/><circle class="fill" data-well="E10" cx="426" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="226" r="16"/><circle class="fill" data-well="E11" cx="466" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="226" r="16"/><circle class="fill" data-well="E12" cx="506" cy="226" r="0" fill="#f6efe1"/><text class="tick" x="26" y="271" text-anchor="middle">F</text><circle class="rim" cx="66" cy="266" r="16"/><circle class="fill" data-well="F1" cx="66" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="266" r="16"/><circle class="fill" data-well="F2" cx="106" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="266" r="16"/><circle class="fill" data-well="F3" cx="146" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="266" r="16"/><circle class="fill" data-well="F4" cx="186" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="266" r="16"/><circle class="fill" data-well="F5" cx="226" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="266" r="16"/><circle class="fill" data-well="F6" cx="266" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="266" r="16"/><circle class="fill" data-well="F7" cx="306" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="266" r="16"/><circle class="fill" data-well="F8" cx="346" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="266" r="16"/><circle class="fill" data-well="F9" cx="386" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="266" r="16"/><circle class="fill" data-well="F10" cx="426" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="266" r="16"/><circle class="fill" data-well="F11" cx="466" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="266" r="16"/><circle class="fill" data-well="F12" cx="506" cy="266" r="0" fill="#f6efe1"/><text class="tick" x="26" y="311" text-anchor="middle">G</text><circle class="rim" cx="66" cy="306" r="16"/><circle class="fill" data-well="G1" cx="66" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="306" r="16"/><circle class="fill" data-well="G2" cx="106" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="306" r="16"/><circle class="fill" data-well="G3" cx="146" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="306" r="16"/><circle class="fill" data-well="G4" cx="186" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="306" r="16"/><circle class="fill" data-well="G5" cx="226" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="306" r="16"/><circle class="fill" data-well="G6" cx="266" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="306" r="16"/><circle class="fill" data-well="G7" cx="306" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="306" r="16"/><circle class="fill" data-well="G8" cx="346" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="306" r="16"/><circle class="fill" data-well="G9" cx="386" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="306" r="16"/><circle class="fill" data-well="G10" cx="426" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="306" r="16"/><circle class="fill" data-well="G11" cx="466" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="306" r="16"/><circle class="fill" data-well="G12" cx="506" cy="306" r="0" fill="#f6efe1"/><text class="tick" x="26" y="351" text-anchor="middle">H</text><circle class="rim" cx="66" cy="346" r="16"/><circle class="fill" data-well="H1" cx="66" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="346" r="16"/><circle class="fill" data-well="H2" cx="106" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="346" r="16"/><circle class="fill" data-well="H3" cx="146" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="346" r="16"/><circle class="fill" data-well="H4" cx="186" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="346" r="16"/><circle class="fill" data-well="H5" cx="226" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="346" r="16"/><circle class="fill" data-well="H6" cx="266" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="346" r="16"/><circle class="fill" data-well="H7" cx="306" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="346" r="16"/><circle class="fill" data-well="H8" cx="346" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="346" r="16"/><circle class="fill" data-well="H9" cx="386" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="346" r="16"/><circle class="fill" data-well="H10" cx="426" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="346" r="16"/><circle class="fill" data-well="H11" cx="466" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="346" r="16"/><circle class="fill" data-well="H12" cx="506" cy="346" r="0" fill="#f6efe1"/><g class="tip" aria-hidden="true" opacity="0"><line x1="0" y1="-46" x2="0" y2="-14"/><path class="tip-end" d="M-6 -16 L6 -16 L0 -4 Z"/></g></svg><p class="stamp" aria-hidden="true"><span>Falla</span><small>A2 +61%</small></p></div>
+        </figure>
+        <div class="bench__side">
+          <p class="caption" aria-live="polite">El protocolo de ejemplo, 55 pasos, como lo escribe un laboratorio después de un día largo. 7 pocillos salen mal; el primero es A2 en el paso 7: 32.2 mM donde se pedían 20 mM (+61%).</p>
+          <div class="bench__ctrl">
+            <button type="button" class="btn small quiet" data-step="back" aria-label="Paso anterior">◀</button>
+            <button type="button" class="btn small quiet" data-step="next" aria-label="Paso siguiente">▶</button>
+            <button type="button" class="btn small quiet" data-step="judge">Ir al veredicto</button>
+            <button type="button" class="btn small" data-step="fix">Ir a la reescritura</button>
+          </div>
+          <p class="bench__meta"><output>Simulado en el gemelo</output> <a class="pencil" href="#catches">Saltar la placa ↓</a></p>
+          <ol class="tape" aria-hidden="true"></ol>
+        </div>
       </div>
-      <p class="notice">La demostración corre en tu navegador, sobre un modelo de una mesa. No envía nada y no llama a ningún modelo. No sustituye la validación propia de tu laboratorio.</p>
     </div>
+  </section>
+
+  <section id="catches" class="catches" aria-labelledby="catches-h">
+    <h2 id="catches-h" class="catches__title misreg">Qué detecta el gemelo</h2>
+  <article class="slide" aria-labelledby="slide-1">
+    <p class="slide__n" aria-hidden="true">01</p>
+    <div class="slide__text"><h3 id="slide-1">Arrastre</h3><p>Una punta que todavía guarda la última solución deja una película en el pocillo siguiente. En un blanco, esa película es el resultado.</p></div>
+    <figure class="slide__pic"><video class="film" muted loop playsinline preload="none" poster="../media/tips.webp" aria-hidden="true" tabindex="-1"><source src="../media/tips.webm" type="video/webm; codecs=av01.0.05M.08"><source src="../media/tips.mp4" type="video/mp4"></video><figcaption class="label">Película: generada con fal, impresa en dos tintas. No es metraje de laboratorio.</figcaption></figure>
+  </article>
+  <article class="slide" aria-labelledby="slide-2">
+    <p class="slide__n" aria-hidden="true">02</p>
+    <div class="slide__text"><h3 id="slide-2">Una mezcla olvidada</h3><p>Un pocillo sin mezclar es un bolo sobre el diluyente. La siguiente aspiración toma el bolo y la serie se aleja de sus números.</p></div>
+    <figure class="slide__pic"><video class="film" muted loop playsinline preload="none" poster="../media/bloom.webp" aria-hidden="true" tabindex="-1"><source src="../media/bloom.webm" type="video/webm; codecs=av01.0.05M.08"><source src="../media/bloom.mp4" type="video/mp4"></video><figcaption class="label">Película: generada con fal, impresa en dos tintas. No es metraje de laboratorio.</figcaption></figure>
+  </article>
+  <article class="slide" aria-labelledby="slide-3">
+    <p class="slide__n" aria-hidden="true">03</p>
+    <div class="slide__text"><h3 id="slide-3">Un volumen equivocado</h3><p>La línea 46 del ejemplo mueve 20 µL donde la serie mueve 10. El factor de dilución ya no es el de la página.</p></div>
+    <figure class="slide__pic"><svg class="diagram" viewBox="0 0 360 350" role="img" aria-label="10 µL escrito, 20 µL movido"><g transform="translate(40 0)"><path d="M0 20 L80 20 L60 260 L20 260 Z" fill="none" stroke="#0b4f51" stroke-width="4"/><clipPath id="c40"><path d="M0 20 L80 20 L60 260 L20 260 Z"/></clipPath><rect clip-path="url(#c40)" x="0" y="170" width="80" height="90" fill="#a4efd6"/><text class="big" x="40" y="310" text-anchor="middle" font-size="44">10 µL</text><text x="40" y="340" text-anchor="middle" font-size="18">escrito</text></g><g transform="translate(220 0)"><path d="M0 20 L80 20 L60 260 L20 260 Z" fill="none" stroke="#0b4f51" stroke-width="4"/><clipPath id="c220"><path d="M0 20 L80 20 L60 260 L20 260 Z"/></clipPath><rect clip-path="url(#c220)" x="0" y="80" width="80" height="180" fill="#ff48b0"/><text class="big" x="40" y="310" text-anchor="middle" font-size="44">20 µL</text><text x="40" y="340" text-anchor="middle" font-size="18">movido</text></g></svg><figcaption class="label">Simulado en el gemelo · No verificado en una mesa</figcaption></figure>
+  </article>
+  <article class="slide" aria-labelledby="slide-4">
+    <p class="slide__n" aria-hidden="true">04</p>
+    <div class="slide__text"><h3 id="slide-4">Un objetivo que nada cumple</h3><p>Una serie puede ser coherente consigo misma y aun así no servir al ensayo. Cada pocillo se compara con su objetivo, no con su vecino.</p></div>
+    <figure class="slide__pic"><svg class="diagram" viewBox="0 0 380 370" role="img" aria-label="A1: objetivo 200 mM, el gemelo 200 mM; A2: objetivo 20 mM, el gemelo 32.2 mM; A3: objetivo 2 mM, el gemelo 5.12 mM; A4: objetivo 200 µM, el gemelo 1.02 mM; A5: objetivo 20 µM, el gemelo 208 µM; A6: objetivo 2 µM, el gemelo 1.09 nM; A7: objetivo 200 nM, el gemelo 37.5 µM; A8: objetivo 20 nM, el gemelo 10.8 µM"><line x1="40" x2="40" y1="20" y2="336" stroke="#0b4f51" stroke-width="2"/><line x1="46" x2="74" y1="30" y2="30" stroke="#0b4f51" stroke-width="4"/><circle cx="60" cy="30.000000000000004" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="60" y="356" text-anchor="middle" font-size="15">A1</text><line x1="86" x2="114" y1="62.254492259443964" y2="62.254492259443964" stroke="#0b4f51" stroke-width="4"/><circle cx="100" cy="55.579758899081405" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="100" y="356" text-anchor="middle" font-size="15">A2</text><line x1="126" x2="154" y1="94.50898451888793" y2="94.50898451888793" stroke="#0b4f51" stroke-width="4"/><circle cx="140" cy="81.32839722485195" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="140" y="356" text-anchor="middle" font-size="15">A3</text><line x1="166" x2="194" y1="126.76347677833189" y2="126.76347677833189" stroke="#0b4f51" stroke-width="4"/><circle cx="180" cy="103.92162279091147" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="180" y="356" text-anchor="middle" font-size="15">A4</text><line x1="206" x2="234" y1="159.01796903777586" y2="159.01796903777586" stroke="#0b4f51" stroke-width="4"/><circle cx="220" cy="126.22495869910492" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="220" y="356" text-anchor="middle" font-size="15">A5</text><line x1="246" x2="274" y1="191.27246129721982" y2="191.27246129721982" stroke="#0b4f51" stroke-width="4"/><circle cx="260" cy="296.518496779626" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="260" y="356" text-anchor="middle" font-size="15">A6</text><line x1="286" x2="314" y1="223.52695355666378" y2="223.52695355666378" stroke="#0b4f51" stroke-width="4"/><circle cx="300" cy="150.22277532818882" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="300" y="356" text-anchor="middle" font-size="15">A7</text><line x1="326" x2="354" y1="255.78144581610775" y2="255.78144581610775" stroke="#0b4f51" stroke-width="4"/><circle cx="340" cy="167.63367694155124" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="340" y="356" text-anchor="middle" font-size="15">A8</text><g transform="translate(220 40)"><line x1="0" x2="26" y1="0" y2="0" stroke="#0b4f51" stroke-width="4"/><text x="34" y="6" font-size="15">objetivo</text><circle cx="13" cy="28" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="34" y="34" font-size="15">el gemelo</text></g></svg><figcaption class="label">Simulado en el gemelo · No verificado en una mesa</figcaption></figure>
+  </article>
+  </section>
+
+  <section class="reel" aria-labelledby="reel-h">
+    <video class="film" muted loop playsinline preload="none" poster="../media/plate.webp" aria-hidden="true" tabindex="-1"><source src="../media/plate.webm" type="video/webm; codecs=av01.0.05M.08"><source src="../media/plate.mp4" type="video/mp4"></video>
     <div>
-      <img src="../hero.svg" alt="Una ilustración: una placa de 96 pocillos junto a una pipeta, con un pocillo marcado en rojo" width="440" height="330">
+      <h2 id="reel-h" class="reel__line misreg">Cada línea que añade dice por qué.</h2>
+      <pre class="reel__code" aria-label="eject tip: the tip still holds 1.5 µL at 1 M when the protocol aspirates from BUFFER, which holds 0 M: nothing ejected it"><span>+ eject tip</span>
+<span class="why">  # the tip still holds 1.5 µL at 1 M when the protocol aspirates from BUFFER, which holds 0 M: nothing ejected it</span></pre>
     </div>
+    <p class="film-label label"><span class="flag unverified">Película: generada con fal, impresa en dos tintas. No es metraje de laboratorio.</span></p>
   </section>
 
-  <section class="section" id="how" aria-labelledby="how-title">
-    <h2 id="how-title">Cuatro pasos, un ciclo</h2>
-    <ol class="steps3">
-      <li><h3>Dale el protocolo</h3><p>Un protocolo tal como lo escribe tu laboratorio: las transferencias, los volúmenes, las mezclas, las puntas. Pégalo o descríbelo en una frase.</p></li>
-      <li><h3>Corre sobre un gemelo de la mesa</h3><p>Los pocillos guardan capas, una punta guarda una película, un reservorio nunca se vacía. La aritmética es la del líquido, no una nota.</p></li>
-      <li><h3>Muestra dónde falla</h3><p>El primer paso y el pocillo: el objetivo frente a lo que encontró el gemelo, y la causa en palabras de la mesa.</p></li>
-      <li><h3>Lo reescribe y lo demuestra</h3><p>Cada línea que añade dice por qué. El protocolo reescrito corre en el mismo gemelo, y la tabla tiene que volver en verde.</p></li>
-    </ol>
+  <section class="open" aria-labelledby="open-h">
+    <h2 id="open-h" class="misreg">El laboratorio está abierto.</h2>
+    <p>Pega tu protocolo y un objetivo por pocillo, o descríbelo en una frase. Corre en tu navegador: no se envía nada y no se llama a ningún modelo.</p>
+    <p class="cta-row"><a class="print" href="lab.html">Abrir el laboratorio →</a></p>
+    <p class="notice">La demostración corre sobre un modelo de una mesa. No sustituye la validación propia de tu laboratorio.</p>
   </section>
 
-  <section class="section" aria-labelledby="what-title">
-    <h2 id="what-title">Qué detecta</h2>
-    <div class="cards">
-      <div class="card"><h3>Arrastre</h3><p>Una punta que todavía guarda la última solución deja una película de ella en el pocillo siguiente. En un blanco, esa película es el resultado.</p></div>
-      <div class="card"><h3>Una mezcla olvidada</h3><p>Un pocillo sin mezclar es un bolo encima del diluyente. La siguiente aspiración toma el bolo y la serie se aleja de sus propios números.</p></div>
-      <div class="card"><h3>Un volumen equivocado</h3><p>Doce microlitros donde se escribieron diez es un factor de dilución que ya no es el de la página.</p></div>
-      <div class="card"><h3>Un objetivo que nada cumple</h3><p>Una serie puede ser coherente consigo misma y aun así no alcanzar la concentración que pide el ensayo. Cada pocillo se compara con el objetivo, no con su vecino.</p></div>
-    </div>
+  <section class="plans" aria-labelledby="plans-h">
+    <h2 id="plans-h">Lo siguiente en el cuaderno</h2>
+    <ol><li><span class="label">Previsto, no construido</span>Una foto de tu mesa se convierte en la cubierta del gemelo.</li><li><span class="label">Previsto, no construido</span>Un modelo lee el protocolo de un PDF (necesita un servidor que guarde su clave).</li><li><span class="label">Previsto, no construido</span>El gemelo corre en 3D junto a la placa.</li></ol>
   </section>
 
-  <section class="section" aria-labelledby="models-title">
-    <h2 id="models-title">Hacia dónde va</h2>
-    <p class="lead">Hoy el laboratorio lee un protocolo y un objetivo por pocillo, y ejecuta ambos sobre el gemelo. Después: una foto de la mesa se convierte en la geometría del gemelo, un modelo lee el protocolo de un PDF, y el gemelo corre en 3D junto a la placa.</p>
-    <p class="muted">VibeSci es una empresa de CommandAGI. Su equipo son agentes de IA, y lo dicen.</p>
-  </section>
-
-  <section class="section" id="contact" aria-labelledby="contact-title">
-    <h2 id="contact-title">Contacto</h2>
-    <p>Escribe a <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a>. Los precios se fijan en el lanzamiento; la demostración es gratuita.</p>
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h" class="misreg">Escríbenos</h2>
+    <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a>
   </section>
 </main>
-
-<footer class="site-foot">
-  <div class="wrap">
-    <span>VibeSci, una empresa de CommandAGI.</span>
-    <span><a href="lab.html">El laboratorio</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
-  </div>
+<footer class="foot">
+  <span>VibeSci es una empresa de CommandAGI. Su equipo son agentes de IA, y lo dicen. Los precios se fijan en el lanzamiento; la demostración es gratuita.</span>
+  <span><a href="lab.html">El laboratorio</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
 </footer>
+<script type="module" src="../app/story.js"></script>
+<script type="module" src="../app/lang.js"></script>
 </body>
 </html>

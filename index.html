@@ -3,97 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>VibeSci: a little chemistry lab you run from a prompt</title>
-<meta name="description" content="VibeSci reads your liquid-handling protocol, builds a digital twin of your bench, runs the protocol and shows the exact step and well where it fails. Then it rewrites the protocol and proves the fix in the same twin.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>VibeSci: run the protocol before the reagents</title>
+<meta name="description" content="VibeSci reads a liquid-handling protocol, runs it on a twin of your bench, names the step and the well that fail, rewrites the protocol and proves the fix in the same twin.">
+<meta name="theme-color" content="#f6efe1">
+<meta property="og:title" content="VibeSci: run the protocol before the reagents">
+<meta property="og:description" content="VibeSci reads a liquid-handling protocol, runs it on a twin of your bench, names the step and the well that fail, rewrites the protocol and proves the fix in the same twin.">
+<meta property="og:image" content="https://vibesci.commandagi.app/og.png">
+<meta property="og:url" content="https://vibesci.commandagi.app/index.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/recursive.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="touch-icon.png">
+<link rel="alternate" hreflang="en" href="index.html">
 <link rel="alternate" hreflang="es" href="es/index.html">
 <link rel="alternate" hreflang="zh-Hans" href="zh/index.html">
-<link rel="alternate" hreflang="en" href="index.html">
 </head>
-<body>
+<body class="index">
 <a class="skip" href="#main">Skip to the content</a>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="index.html"><img src="mark.svg" alt="" width="30" height="30">VibeSci</a>
-    <nav class="site-nav" aria-label="Site">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="lab.html">The lab</a>
-      <a href="index.html#how">How it works</a>
-      <a href="index.html#contact">Contact</a>
-      <span class="lang">
-        <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Language" title="Language"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
-        <noscript><a href="es/index.html" hreflang="es" lang="es">Español</a> · <a href="zh/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
-        <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
-          <div class="lang-dialog__box">
-            <div class="lang-dialog__head"><h2 id="lang-dialog-title">Language</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Close">✕</button></form></div>
-            <ul class="lang-list" role="list">
-              <li><a href="index.html" hreflang="en" aria-current="true"><span lang="en">English</span></a></li>
-              <li><a href="es/index.html" hreflang="es"><span lang="es">Español</span></a></li>
-              <li><a href="zh/index.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li>
-            </ul>
-          </div>
-        </dialog>
-      </span>
-    </nav>
-  </div>
+<header class="head">
+  <a class="wordmark" href="index.html"><img src="wordmark.svg" alt="VibeSci" width="197" height="40"></a>
+  <nav class="tabs" aria-label="Site">
+    <a class="tab" href="#bench" aria-current="page"><span class="n">01</span> <span class="w">The bench</span></a>
+    <a class="tab" href="lab.html"><span class="n">02</span> <span class="w">The lab</span></a>
+    <a class="tab" href="#catches"><span class="n">03</span> <span class="w">What it catches</span></a>
+    <a class="tab" href="#contact"><span class="n">04</span> <span class="w">Contact</span></a>
+    <span class="lang">
+      <button type="button" class="tab lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Language" title="Language"><span aria-hidden="true">A/<span lang="zh-Hans">文</span></span></button>
+      <noscript><a href="es/index.html" hreflang="es" lang="es">Español</a> · <a href="zh/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
+    </span>
+  </nav>
+  <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
+    <div class="lang-dialog__box">
+      <div class="lang-dialog__head"><h2 id="lang-dialog-title">Language</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Close">✕</button></form></div>
+      <ul class="lang-list" role="list"><li><a href="index.html" hreflang="en" aria-current="true"><span lang="en">English</span></a></li><li><a href="es/index.html" hreflang="es"><span lang="es">Español</span></a></li><li><a href="zh/index.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li></ul>
+    </div>
+  </dialog>
 </header>
+<main id="main">
+  <section class="cover" aria-labelledby="cover-h">
+    <video class="film" muted loop playsinline preload="metadata" poster="media/drop.webp" aria-hidden="true" tabindex="-1"><source src="media/drop.webm" type="video/webm; codecs=av01.0.05M.08"><source src="media/drop.mp4" type="video/mp4"></video>
+    <p class="film-note"><span class="flag unverified">Film: generated with fal, printed in two inks. Not lab footage.</span> <button type="button" class="film-toggle" data-films aria-pressed="false">Pause the films</button></p>
+    <div class="cover__sheet">
+      <p class="entry label"><span>Entry 001</span><span>Lab notebook</span><span>Bench: a twin</span></p>
+      <h1 id="cover-h" class="misreg">Run the protocol <em>before</em> the reagents.</h1>
+      <p class="cover__lede">Paste a liquid-handling protocol. VibeSci runs it on a twin of your bench, names the step and the well that fail, and proves the rewrite.</p>
+      <p class="cta-row"><a class="print" href="lab.html">Run one in the twin →</a> <a class="pencil" href="#bench">Watch a plate fail ↓</a></p>
+    </div>
+  </section>
 
-<main id="main" class="wrap">
-  <section class="hero">
-    <div>
-      <p class="eyebrow">A chemistry lab you run from a prompt</p>
-      <h1>Before you touch the reagents, run the protocol.</h1>
-      <p class="lead">VibeSci reads a written liquid-handling protocol, builds a digital twin of your bench, and runs it. When a well comes out wrong it names the step that failed it — a tip that was not ejected, a mix that never happened, a volume written wrong — then rewrites the protocol and re-runs it to prove the fix.</p>
-      <div class="btns">
-        <a class="btn primary" href="lab.html">Run a protocol in the twin</a>
-        <a class="btn" href="#how">What it does</a>
+  <section id="bench" class="bench" aria-labelledby="bench-h">
+    <div class="bench__track">
+      <div class="bench__stick">
+        <header class="bench__head">
+          <h2 id="bench-h" class="misreg">A Tuesday dilution series.</h2>
+          <p class="bench__flags"><span class="flag sim">Simulated in the twin</span><span class="flag unverified">Not verified on a bench</span></p>
+        </header>
+        <figure class="plate-fig">
+          <div class="plate-wrap"><svg class="plate" viewBox="0 0 544 384" role="img" aria-labelledby="plate-title"><title id="plate-title">A 96-well plate seen from above: liquid is mint, and the more a well carries, the pinker it is.</title><rect class="frame-pink" x="16" y="15" width="524" height="364"/><rect class="frame" x="10" y="10" width="524" height="364"/><text class="tick" x="66" y="36" text-anchor="middle">1</text><text class="tick" x="106" y="36" text-anchor="middle">2</text><text class="tick" x="146" y="36" text-anchor="middle">3</text><text class="tick" x="186" y="36" text-anchor="middle">4</text><text class="tick" x="226" y="36" text-anchor="middle">5</text><text class="tick" x="266" y="36" text-anchor="middle">6</text><text class="tick" x="306" y="36" text-anchor="middle">7</text><text class="tick" x="346" y="36" text-anchor="middle">8</text><text class="tick" x="386" y="36" text-anchor="middle">9</text><text class="tick" x="426" y="36" text-anchor="middle">10</text><text class="tick" x="466" y="36" text-anchor="middle">11</text><text class="tick" x="506" y="36" text-anchor="middle">12</text><text class="tick" x="26" y="71" text-anchor="middle">A</text><circle class="rim" cx="66" cy="66" r="16"/><circle class="fill" data-well="A1" cx="66" cy="66" r="14" fill="#f55ab4"/><circle class="rim" cx="106" cy="66" r="16"/><circle class="fill" data-well="A2" cx="106" cy="66" r="14" fill="#eb6db9"/><circle class="ring" data-ring="A2" cx="106" cy="66" r="20"/><circle class="rim" cx="146" cy="66" r="16"/><circle class="fill" data-well="A3" cx="146" cy="66" r="14" fill="#e080bd"/><circle class="ring" data-ring="A3" cx="146" cy="66" r="20"/><circle class="rim" cx="186" cy="66" r="16"/><circle class="fill" data-well="A4" cx="186" cy="66" r="14" fill="#d890c0"/><circle class="ring" data-ring="A4" cx="186" cy="66" r="20"/><circle class="rim" cx="226" cy="66" r="16"/><circle class="fill" data-well="A5" cx="226" cy="66" r="14" fill="#d09fc4"/><circle class="ring" data-ring="A5" cx="226" cy="66" r="20"/><circle class="rim" cx="266" cy="66" r="16"/><circle class="fill" data-well="A6" cx="266" cy="66" r="14" fill="#a4efd6"/><circle class="ring" data-ring="A6" cx="266" cy="66" r="20"/><circle class="rim" cx="306" cy="66" r="16"/><circle class="fill" data-well="A7" cx="306" cy="66" r="14" fill="#c7aec7"/><circle class="ring" data-ring="A7" cx="306" cy="66" r="20"/><circle class="rim" cx="346" cy="66" r="16"/><circle class="fill" data-well="A8" cx="346" cy="66" r="14" fill="#c2b9ca"/><circle class="ring" data-ring="A8" cx="346" cy="66" r="20"/><circle class="rim" cx="386" cy="66" r="16"/><circle class="fill" data-well="A9" cx="386" cy="66" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="66" r="16"/><circle class="fill" data-well="A10" cx="426" cy="66" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="66" r="16"/><circle class="fill" data-well="A11" cx="466" cy="66" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="66" r="16"/><circle class="fill" data-well="A12" cx="506" cy="66" r="0" fill="#f6efe1"/><text class="tick" x="26" y="111" text-anchor="middle">B</text><circle class="rim" cx="66" cy="106" r="16"/><circle class="fill" data-well="B1" cx="66" cy="106" r="14" fill="#b7ccce"/><circle class="rim" cx="106" cy="106" r="16"/><circle class="fill" data-well="B2" cx="106" cy="106" r="14" fill="#a9e6d4"/><circle class="rim" cx="146" cy="106" r="16"/><circle class="fill" data-well="B3" cx="146" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="186" cy="106" r="16"/><circle class="fill" data-well="B4" cx="186" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="226" cy="106" r="16"/><circle class="fill" data-well="B5" cx="226" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="266" cy="106" r="16"/><circle class="fill" data-well="B6" cx="266" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="306" cy="106" r="16"/><circle class="fill" data-well="B7" cx="306" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="346" cy="106" r="16"/><circle class="fill" data-well="B8" cx="346" cy="106" r="14" fill="#a4efd6"/><circle class="rim" cx="386" cy="106" r="16"/><circle class="fill" data-well="B9" cx="386" cy="106" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="106" r="16"/><circle class="fill" data-well="B10" cx="426" cy="106" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="106" r="16"/><circle class="fill" data-well="B11" cx="466" cy="106" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="106" r="16"/><circle class="fill" data-well="B12" cx="506" cy="106" r="0" fill="#f6efe1"/><text class="tick" x="26" y="151" text-anchor="middle">C</text><circle class="rim" cx="66" cy="146" r="16"/><circle class="fill" data-well="C1" cx="66" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="146" r="16"/><circle class="fill" data-well="C2" cx="106" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="146" r="16"/><circle class="fill" data-well="C3" cx="146" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="146" r="16"/><circle class="fill" data-well="C4" cx="186" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="146" r="16"/><circle class="fill" data-well="C5" cx="226" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="146" r="16"/><circle class="fill" data-well="C6" cx="266" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="146" r="16"/><circle class="fill" data-well="C7" cx="306" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="146" r="16"/><circle class="fill" data-well="C8" cx="346" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="146" r="16"/><circle class="fill" data-well="C9" cx="386" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="146" r="16"/><circle class="fill" data-well="C10" cx="426" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="146" r="16"/><circle class="fill" data-well="C11" cx="466" cy="146" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="146" r="16"/><circle class="fill" data-well="C12" cx="506" cy="146" r="0" fill="#f6efe1"/><text class="tick" x="26" y="191" text-anchor="middle">D</text><circle class="rim" cx="66" cy="186" r="16"/><circle class="fill" data-well="D1" cx="66" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="186" r="16"/><circle class="fill" data-well="D2" cx="106" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="186" r="16"/><circle class="fill" data-well="D3" cx="146" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="186" r="16"/><circle class="fill" data-well="D4" cx="186" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="186" r="16"/><circle class="fill" data-well="D5" cx="226" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="186" r="16"/><circle class="fill" data-well="D6" cx="266" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="186" r="16"/><circle class="fill" data-well="D7" cx="306" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="186" r="16"/><circle class="fill" data-well="D8" cx="346" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="186" r="16"/><circle class="fill" data-well="D9" cx="386" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="186" r="16"/><circle class="fill" data-well="D10" cx="426" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="186" r="16"/><circle class="fill" data-well="D11" cx="466" cy="186" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="186" r="16"/><circle class="fill" data-well="D12" cx="506" cy="186" r="0" fill="#f6efe1"/><text class="tick" x="26" y="231" text-anchor="middle">E</text><circle class="rim" cx="66" cy="226" r="16"/><circle class="fill" data-well="E1" cx="66" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="226" r="16"/><circle class="fill" data-well="E2" cx="106" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="226" r="16"/><circle class="fill" data-well="E3" cx="146" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="226" r="16"/><circle class="fill" data-well="E4" cx="186" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="226" r="16"/><circle class="fill" data-well="E5" cx="226" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="226" r="16"/><circle class="fill" data-well="E6" cx="266" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="226" r="16"/><circle class="fill" data-well="E7" cx="306" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="226" r="16"/><circle class="fill" data-well="E8" cx="346" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="226" r="16"/><circle class="fill" data-well="E9" cx="386" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="226" r="16"/><circle class="fill" data-well="E10" cx="426" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="226" r="16"/><circle class="fill" data-well="E11" cx="466" cy="226" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="226" r="16"/><circle class="fill" data-well="E12" cx="506" cy="226" r="0" fill="#f6efe1"/><text class="tick" x="26" y="271" text-anchor="middle">F</text><circle class="rim" cx="66" cy="266" r="16"/><circle class="fill" data-well="F1" cx="66" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="266" r="16"/><circle class="fill" data-well="F2" cx="106" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="266" r="16"/><circle class="fill" data-well="F3" cx="146" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="266" r="16"/><circle class="fill" data-well="F4" cx="186" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="266" r="16"/><circle class="fill" data-well="F5" cx="226" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="266" r="16"/><circle class="fill" data-well="F6" cx="266" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="266" r="16"/><circle class="fill" data-well="F7" cx="306" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="266" r="16"/><circle class="fill" data-well="F8" cx="346" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="266" r="16"/><circle class="fill" data-well="F9" cx="386" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="266" r="16"/><circle class="fill" data-well="F10" cx="426" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="266" r="16"/><circle class="fill" data-well="F11" cx="466" cy="266" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="266" r="16"/><circle class="fill" data-well="F12" cx="506" cy="266" r="0" fill="#f6efe1"/><text class="tick" x="26" y="311" text-anchor="middle">G</text><circle class="rim" cx="66" cy="306" r="16"/><circle class="fill" data-well="G1" cx="66" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="306" r="16"/><circle class="fill" data-well="G2" cx="106" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="306" r="16"/><circle class="fill" data-well="G3" cx="146" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="306" r="16"/><circle class="fill" data-well="G4" cx="186" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="306" r="16"/><circle class="fill" data-well="G5" cx="226" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="306" r="16"/><circle class="fill" data-well="G6" cx="266" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="306" r="16"/><circle class="fill" data-well="G7" cx="306" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="306" r="16"/><circle class="fill" data-well="G8" cx="346" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="306" r="16"/><circle class="fill" data-well="G9" cx="386" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="306" r="16"/><circle class="fill" data-well="G10" cx="426" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="306" r="16"/><circle class="fill" data-well="G11" cx="466" cy="306" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="306" r="16"/><circle class="fill" data-well="G12" cx="506" cy="306" r="0" fill="#f6efe1"/><text class="tick" x="26" y="351" text-anchor="middle">H</text><circle class="rim" cx="66" cy="346" r="16"/><circle class="fill" data-well="H1" cx="66" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="106" cy="346" r="16"/><circle class="fill" data-well="H2" cx="106" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="146" cy="346" r="16"/><circle class="fill" data-well="H3" cx="146" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="186" cy="346" r="16"/><circle class="fill" data-well="H4" cx="186" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="226" cy="346" r="16"/><circle class="fill" data-well="H5" cx="226" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="266" cy="346" r="16"/><circle class="fill" data-well="H6" cx="266" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="306" cy="346" r="16"/><circle class="fill" data-well="H7" cx="306" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="346" cy="346" r="16"/><circle class="fill" data-well="H8" cx="346" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="386" cy="346" r="16"/><circle class="fill" data-well="H9" cx="386" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="426" cy="346" r="16"/><circle class="fill" data-well="H10" cx="426" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="466" cy="346" r="16"/><circle class="fill" data-well="H11" cx="466" cy="346" r="0" fill="#f6efe1"/><circle class="rim" cx="506" cy="346" r="16"/><circle class="fill" data-well="H12" cx="506" cy="346" r="0" fill="#f6efe1"/><g class="tip" aria-hidden="true" opacity="0"><line x1="0" y1="-46" x2="0" y2="-14"/><path class="tip-end" d="M-6 -16 L6 -16 L0 -4 Z"/></g></svg><p class="stamp" aria-hidden="true"><span>Fails</span><small>A2 +61%</small></p></div>
+        </figure>
+        <div class="bench__side">
+          <p class="caption" aria-live="polite">The sample protocol, 55 steps, as a lab writes it after a long day. 7 wells come out wrong; the first is A2 at step 7: 32.2 mM where 20 mM was asked (+61%).</p>
+          <div class="bench__ctrl">
+            <button type="button" class="btn small quiet" data-step="back" aria-label="Previous step">◀</button>
+            <button type="button" class="btn small quiet" data-step="next" aria-label="Next step">▶</button>
+            <button type="button" class="btn small quiet" data-step="judge">Jump to the verdict</button>
+            <button type="button" class="btn small" data-step="fix">Jump to the rewrite</button>
+          </div>
+          <p class="bench__meta"><output>Simulated in the twin</output> <a class="pencil" href="#catches">Skip past the plate ↓</a></p>
+          <ol class="tape" aria-hidden="true"></ol>
+        </div>
       </div>
-      <p class="notice">The demo runs in your browser, on a model of a bench. It sends nothing and calls no model. It is not a substitute for your lab's own validation.</p>
     </div>
+  </section>
+
+  <section id="catches" class="catches" aria-labelledby="catches-h">
+    <h2 id="catches-h" class="catches__title misreg">What the twin catches</h2>
+  <article class="slide" aria-labelledby="slide-1">
+    <p class="slide__n" aria-hidden="true">01</p>
+    <div class="slide__text"><h3 id="slide-1">Carryover</h3><p>A tip that still holds the last solution leaves a film in the next well. On a blank, that film is the result.</p></div>
+    <figure class="slide__pic"><video class="film" muted loop playsinline preload="none" poster="media/tips.webp" aria-hidden="true" tabindex="-1"><source src="media/tips.webm" type="video/webm; codecs=av01.0.05M.08"><source src="media/tips.mp4" type="video/mp4"></video><figcaption class="label">Film: generated with fal, printed in two inks. Not lab footage.</figcaption></figure>
+  </article>
+  <article class="slide" aria-labelledby="slide-2">
+    <p class="slide__n" aria-hidden="true">02</p>
+    <div class="slide__text"><h3 id="slide-2">A missed mix</h3><p>An unmixed well is a bolus sitting on diluent. The next aspirate takes the bolus, and the series walks away from its numbers.</p></div>
+    <figure class="slide__pic"><video class="film" muted loop playsinline preload="none" poster="media/bloom.webp" aria-hidden="true" tabindex="-1"><source src="media/bloom.webm" type="video/webm; codecs=av01.0.05M.08"><source src="media/bloom.mp4" type="video/mp4"></video><figcaption class="label">Film: generated with fal, printed in two inks. Not lab footage.</figcaption></figure>
+  </article>
+  <article class="slide" aria-labelledby="slide-3">
+    <p class="slide__n" aria-hidden="true">03</p>
+    <div class="slide__text"><h3 id="slide-3">A wrong volume</h3><p>Line 46 of the sample moves 20 µL where the series moves 10. The dilution factor is no longer the one on the page.</p></div>
+    <figure class="slide__pic"><svg class="diagram" viewBox="0 0 360 350" role="img" aria-label="10 µL written, 20 µL moved"><g transform="translate(40 0)"><path d="M0 20 L80 20 L60 260 L20 260 Z" fill="none" stroke="#0b4f51" stroke-width="4"/><clipPath id="c40"><path d="M0 20 L80 20 L60 260 L20 260 Z"/></clipPath><rect clip-path="url(#c40)" x="0" y="170" width="80" height="90" fill="#a4efd6"/><text class="big" x="40" y="310" text-anchor="middle" font-size="44">10 µL</text><text x="40" y="340" text-anchor="middle" font-size="18">written</text></g><g transform="translate(220 0)"><path d="M0 20 L80 20 L60 260 L20 260 Z" fill="none" stroke="#0b4f51" stroke-width="4"/><clipPath id="c220"><path d="M0 20 L80 20 L60 260 L20 260 Z"/></clipPath><rect clip-path="url(#c220)" x="0" y="80" width="80" height="180" fill="#ff48b0"/><text class="big" x="40" y="310" text-anchor="middle" font-size="44">20 µL</text><text x="40" y="340" text-anchor="middle" font-size="18">moved</text></g></svg><figcaption class="label">Simulated in the twin · Not verified on a bench</figcaption></figure>
+  </article>
+  <article class="slide" aria-labelledby="slide-4">
+    <p class="slide__n" aria-hidden="true">04</p>
+    <div class="slide__text"><h3 id="slide-4">A target nothing meets</h3><p>A series can agree with itself and still miss the assay. Every well is held to its target, not to its neighbour.</p></div>
+    <figure class="slide__pic"><svg class="diagram" viewBox="0 0 380 370" role="img" aria-label="A1: target 200 mM, the twin 200 mM; A2: target 20 mM, the twin 32.2 mM; A3: target 2 mM, the twin 5.12 mM; A4: target 200 µM, the twin 1.02 mM; A5: target 20 µM, the twin 208 µM; A6: target 2 µM, the twin 1.09 nM; A7: target 200 nM, the twin 37.5 µM; A8: target 20 nM, the twin 10.8 µM"><line x1="40" x2="40" y1="20" y2="336" stroke="#0b4f51" stroke-width="2"/><line x1="46" x2="74" y1="30" y2="30" stroke="#0b4f51" stroke-width="4"/><circle cx="60" cy="30.000000000000004" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="60" y="356" text-anchor="middle" font-size="15">A1</text><line x1="86" x2="114" y1="62.254492259443964" y2="62.254492259443964" stroke="#0b4f51" stroke-width="4"/><circle cx="100" cy="55.579758899081405" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="100" y="356" text-anchor="middle" font-size="15">A2</text><line x1="126" x2="154" y1="94.50898451888793" y2="94.50898451888793" stroke="#0b4f51" stroke-width="4"/><circle cx="140" cy="81.32839722485195" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="140" y="356" text-anchor="middle" font-size="15">A3</text><line x1="166" x2="194" y1="126.76347677833189" y2="126.76347677833189" stroke="#0b4f51" stroke-width="4"/><circle cx="180" cy="103.92162279091147" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="180" y="356" text-anchor="middle" font-size="15">A4</text><line x1="206" x2="234" y1="159.01796903777586" y2="159.01796903777586" stroke="#0b4f51" stroke-width="4"/><circle cx="220" cy="126.22495869910492" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="220" y="356" text-anchor="middle" font-size="15">A5</text><line x1="246" x2="274" y1="191.27246129721982" y2="191.27246129721982" stroke="#0b4f51" stroke-width="4"/><circle cx="260" cy="296.518496779626" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="260" y="356" text-anchor="middle" font-size="15">A6</text><line x1="286" x2="314" y1="223.52695355666378" y2="223.52695355666378" stroke="#0b4f51" stroke-width="4"/><circle cx="300" cy="150.22277532818882" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="300" y="356" text-anchor="middle" font-size="15">A7</text><line x1="326" x2="354" y1="255.78144581610775" y2="255.78144581610775" stroke="#0b4f51" stroke-width="4"/><circle cx="340" cy="167.63367694155124" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="340" y="356" text-anchor="middle" font-size="15">A8</text><g transform="translate(220 40)"><line x1="0" x2="26" y1="0" y2="0" stroke="#0b4f51" stroke-width="4"/><text x="34" y="6" font-size="15">target</text><circle cx="13" cy="28" r="8" fill="#ff48b0" stroke="#b8126a" stroke-width="2"/><text x="34" y="34" font-size="15">the twin</text></g></svg><figcaption class="label">Simulated in the twin · Not verified on a bench</figcaption></figure>
+  </article>
+  </section>
+
+  <section class="reel" aria-labelledby="reel-h">
+    <video class="film" muted loop playsinline preload="none" poster="media/plate.webp" aria-hidden="true" tabindex="-1"><source src="media/plate.webm" type="video/webm; codecs=av01.0.05M.08"><source src="media/plate.mp4" type="video/mp4"></video>
     <div>
-      <img src="hero.svg" alt="An illustration: a 96-well plate beside a pipette, with one well ringed in red" width="440" height="330">
+      <h2 id="reel-h" class="reel__line misreg">Every line it adds says why.</h2>
+      <pre class="reel__code" aria-label="eject tip: the tip still holds 1.5 µL at 1 M when the protocol aspirates from BUFFER, which holds 0 M: nothing ejected it"><span>+ eject tip</span>
+<span class="why">  # the tip still holds 1.5 µL at 1 M when the protocol aspirates from BUFFER, which holds 0 M: nothing ejected it</span></pre>
     </div>
+    <p class="film-label label"><span class="flag unverified">Film: generated with fal, printed in two inks. Not lab footage.</span></p>
   </section>
 
-  <section class="section" id="how" aria-labelledby="how-title">
-    <h2 id="how-title">Four steps, one loop</h2>
-    <ol class="steps3">
-      <li><h3>Give it the protocol</h3><p>A protocol as your lab writes it: the transfers, the volumes, the mixes, the tips. Paste it or describe it in a sentence.</p></li>
-      <li><h3>It runs on a twin of the bench</h3><p>Wells hold layers, a tip keeps a film, a reservoir never runs out. The arithmetic is the liquid's, not a score.</p></li>
-      <li><h3>It shows where it fails</h3><p>The first step and the well: target against what the twin found, and the cause in the bench's words.</p></li>
-      <li><h3>It rewrites and proves it</h3><p>Every line it adds says why. The rewritten protocol runs in the same twin, and the table has to come back green.</p></li>
-    </ol>
+  <section class="open" aria-labelledby="open-h">
+    <h2 id="open-h" class="misreg">The lab is open.</h2>
+    <p>Paste your protocol and a target per well, or describe one in a sentence. It runs in your browser: nothing is sent, no model is called.</p>
+    <p class="cta-row"><a class="print" href="lab.html">Open the lab →</a></p>
+    <p class="notice">The demo runs on a model of a bench. It is not a substitute for your lab’s own validation.</p>
   </section>
 
-  <section class="section" aria-labelledby="what-title">
-    <h2 id="what-title">What it catches</h2>
-    <div class="cards">
-      <div class="card"><h3>Carryover</h3><p>A tip that still holds the last solution puts a film of it into the next well. On a blank, that film is the result.</p></div>
-      <div class="card"><h3>A missed mix</h3><p>An unmixed well is a bolus on top of diluent. The next aspirate takes the bolus, and the series walks away from its own numbers.</p></div>
-      <div class="card"><h3>A wrong volume</h3><p>Twelve microlitres where ten were written is a dilution factor that is no longer the one on the page.</p></div>
-      <div class="card"><h3>A target nothing meets</h3><p>A series can be internally consistent and still miss the concentration the assay needs. Every well is compared with the target, not with its neighbour.</p></div>
-    </div>
+  <section class="plans" aria-labelledby="plans-h">
+    <h2 id="plans-h">Next in the notebook</h2>
+    <ol><li><span class="label">Planned, not built</span>A photo of your bench becomes the twin’s deck.</li><li><span class="label">Planned, not built</span>A model reads the protocol out of a PDF (that needs a server to hold its key).</li><li><span class="label">Planned, not built</span>The twin runs in 3D beside the plate.</li></ol>
   </section>
 
-  <section class="section" aria-labelledby="models-title">
-    <h2 id="models-title">Where it is going</h2>
-    <p class="lead">Today the lab reads a protocol and a target per well, and runs both on the twin. Next: a bench photo becomes the twin's geometry, a model reads the protocol out of a PDF, and the twin runs in 3D beside the plate.</p>
-    <p class="muted">VibeSci is a company of CommandAGI. Its team are AI agents, and they say so.</p>
-  </section>
-
-  <section class="section" id="contact" aria-labelledby="contact-title">
-    <h2 id="contact-title">Contact</h2>
-    <p>Write to <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a>. Prices are set at launch; the demo is free.</p>
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h" class="misreg">Write to us</h2>
+    <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a>
   </section>
 </main>
-
-<footer class="site-foot">
-  <div class="wrap">
-    <span>VibeSci, a company of CommandAGI.</span>
-    <span><a href="lab.html">The lab</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
-  </div>
+<footer class="foot">
+  <span>VibeSci is a company of CommandAGI. Its team are AI agents, and they say so. Prices are set at launch; the demo is free.</span>
+  <span><a href="lab.html">The lab</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
 </footer>
+<script type="module" src="app/story.js"></script>
+<script type="module" src="app/lang.js"></script>
 </body>
 </html>

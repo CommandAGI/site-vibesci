@@ -3,125 +3,126 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>The lab · VibeSci</title>
 <meta name="description" content="Run a liquid-handling protocol on VibeSci's twin of the bench: the step log, the failing well, the cause, and the rewritten protocol proven in the same twin.">
+<meta name="theme-color" content="#f6efe1">
+<meta property="og:title" content="The lab · VibeSci">
+<meta property="og:description" content="Run a liquid-handling protocol on VibeSci's twin of the bench: the step log, the failing well, the cause, and the rewritten protocol proven in the same twin.">
+<meta property="og:image" content="https://vibesci.commandagi.app/og.png">
+<meta property="og:url" content="https://vibesci.commandagi.app/lab.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/recursive.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="touch-icon.png">
+<link rel="alternate" hreflang="en" href="lab.html">
 <link rel="alternate" hreflang="es" href="es/lab.html">
 <link rel="alternate" hreflang="zh-Hans" href="zh/lab.html">
-<link rel="alternate" hreflang="en" href="lab.html">
 </head>
-<body>
+<body class="lab">
 <a class="skip" href="#main">Skip to the content</a>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="index.html"><img src="mark.svg" alt="" width="30" height="30">VibeSci</a>
-    <nav class="site-nav" aria-label="Site">
-      <a href="index.html">Home</a>
-      <a href="lab.html" aria-current="page">The lab</a>
-      <a href="index.html#how">How it works</a>
-      <a href="index.html#contact">Contact</a>
-      <span class="lang">
-        <button type="button" class="lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Language" title="Language"><span class="lang-btn__glyph" aria-hidden="true">A<span>/</span><span lang="zh-Hans">文</span></span></button>
-        <noscript><a href="es/lab.html" hreflang="es" lang="es">Español</a> · <a href="zh/lab.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
-        <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
-          <div class="lang-dialog__box">
-            <div class="lang-dialog__head"><h2 id="lang-dialog-title">Language</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Close">✕</button></form></div>
-            <ul class="lang-list" role="list">
-              <li><a href="lab.html" hreflang="en" aria-current="true"><span lang="en">English</span></a></li>
-              <li><a href="es/lab.html" hreflang="es"><span lang="es">Español</span></a></li>
-              <li><a href="zh/lab.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li>
-            </ul>
-          </div>
-        </dialog>
-      </span>
-    </nav>
-  </div>
+<header class="head">
+  <a class="wordmark" href="index.html"><img src="wordmark.svg" alt="VibeSci" width="197" height="40"></a>
+  <nav class="tabs" aria-label="Site">
+    <a class="tab" href="index.html#bench"><span class="n">01</span> <span class="w">The bench</span></a>
+    <a class="tab" href="lab.html" aria-current="page"><span class="n">02</span> <span class="w">The lab</span></a>
+    <a class="tab" href="index.html#catches"><span class="n">03</span> <span class="w">What it catches</span></a>
+    <a class="tab" href="index.html#contact"><span class="n">04</span> <span class="w">Contact</span></a>
+    <span class="lang">
+      <button type="button" class="tab lang-btn" commandfor="lang-dialog" command="show-modal" aria-haspopup="dialog" aria-label="Language" title="Language"><span aria-hidden="true">A/<span lang="zh-Hans">文</span></span></button>
+      <noscript><a href="es/lab.html" hreflang="es" lang="es">Español</a> · <a href="zh/lab.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></noscript>
+    </span>
+  </nav>
+  <dialog id="lang-dialog" class="lang-dialog" aria-labelledby="lang-dialog-title" closedby="any">
+    <div class="lang-dialog__box">
+      <div class="lang-dialog__head"><h2 id="lang-dialog-title">Language</h2><form method="dialog"><button class="lang-dialog__close" aria-label="Close">✕</button></form></div>
+      <ul class="lang-list" role="list"><li><a href="lab.html" hreflang="en" aria-current="true"><span lang="en">English</span></a></li><li><a href="es/lab.html" hreflang="es"><span lang="es">Español</span></a></li><li><a href="zh/lab.html" hreflang="zh-Hans"><span lang="zh-Hans">简体中文</span></a></li></ul>
+    </div>
+  </dialog>
 </header>
-
-<main id="main" class="wrap">
-  <section class="section" style="padding-top:28px">
-    <h1 style="font-size:clamp(1.6rem,3vw,2.2rem)">The lab</h1>
-    <p class="lead">A protocol on the left, the bench on the right. Run it, watch the step log, then ask VibeSci to fix it: the rewrite runs in the same twin, and the table has to come back green.</p>
-    <div class="prompt">
-      <input type="text" id="prompt" aria-label="Describe the protocol in a sentence" placeholder="a 1:10 dilution of a 1 M stock across A1..A8, blanks in row B">
-      <button type="button" class="btn" id="build">Write it</button>
-    </div>
-
-    <div class="console">
-      <div class="panel">
-        <div class="field">
-          <label for="protocol">The protocol, as the lab wrote it</label>
-          <textarea id="protocol" spellcheck="false" aria-describedby="protocolhelp"></textarea>
-          <p id="protocolhelp" class="muted" style="font-size:0.85rem;margin:0">One step a line: <code>pick tip</code>, <code>aspirate 10 µL from A1</code>, <code>dispense 10 µL into A2</code>, <code>mix A2</code>, <code>eject tip</code>, <code>add 90 µL buffer to A1..A8</code>. <code>reservoir stock = 1 M</code> names a bottle.</p>
-        </div>
-        <div class="field">
-          <label for="targets">The target per well</label>
-          <textarea id="targets" spellcheck="false"></textarea>
-        </div>
-        <div class="row">
-          <button type="button" class="btn primary" id="run">Run it in the twin</button>
-          <button type="button" class="btn" id="fix">VibeSci, fix it</button>
-        </div>
-        <div class="problems" id="problems" hidden></div>
-        <div class="problems" id="targetproblems" hidden></div>
-      </div>
-
-      <div class="panel">
-        <canvas id="stage" width="720" height="360" role="img" aria-label="A 96-well plate seen from the bench, with the wells coloured by what they hold"></canvas>
-        <div class="row" style="justify-content:space-between;margin-top:10px">
-          <span class="row">
-            <button type="button" class="btn small" id="back" aria-label="Previous step">◀</button>
-            <button type="button" class="btn small" id="replay">Replay</button>
-            <button type="button" class="btn small" id="forward" aria-label="Next step">▶</button>
-          </span>
-          <span id="stepcount">Step 1</span>
-        </div>
-        <div class="verdict" id="verdict" hidden></div>
-        <h3 style="margin-top:16px">What the bench did</h3>
-        <ol class="log" id="steps"></ol>
-        <h3 style="margin-top:16px">What the bench noticed</h3>
-        <ul class="log" id="warnings"></ul>
-      </div>
-    </div>
-
-    <section class="section" aria-labelledby="table-title">
-      <h2 id="table-title" style="font-size:1.3rem">Target against the twin</h2>
-      <table class="results" id="results">
-        <thead><tr><th scope="col">Well</th><th scope="col">Target</th><th scope="col">What the twin found</th><th scope="col">Verdict</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
-    <section class="section" aria-labelledby="fix-title">
-      <h2 id="fix-title" style="font-size:1.3rem">The rewrite</h2>
-      <div class="verdict" id="fixverdict" hidden></div>
-      <div class="two">
-        <div>
-          <h3>What VibeSci rewrote</h3>
-          <ul class="changes" id="changes"><li class="none muted">Ask for the fix and every line it adds is listed here, with the reason.</li></ul>
-        </div>
-        <div>
-          <h3>The protocol after the rewrite</h3>
-          <pre class="code" id="fixedcode" hidden></pre>
-          <h3 style="margin-top:14px">The rewritten run</h3>
-          <table class="results" id="after">
-            <thead><tr><th scope="col">Well</th><th scope="col">What the twin found</th><th scope="col">Verdict</th></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  </section>
-</main>
-
-<footer class="site-foot">
-  <div class="wrap">
-    <span>VibeSci, a company of CommandAGI.</span>
-    <span><a href="index.html">Home</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
+<main id="main" class="lab">
+  <div class="lab__head">
+    <p class="lab__flags"><span class="flag sim">Simulated in the twin</span><span class="flag unverified">Not verified on a bench</span></p>
+    <h1 class="misreg">The lab</h1>
+    <p>A protocol on the left, the bench on the right. Run it, read the step log, then ask VibeSci to fix it: the rewrite runs in the same twin, and the table has to come back clean.</p>
   </div>
+  <div class="prompt">
+    <input type="text" id="prompt" aria-label="Describe the protocol in a sentence">
+    <button type="button" class="btn quiet" id="build">Write it</button>
+  </div>
+
+  <div class="console">
+    <div class="panel">
+      <div class="field">
+        <label for="protocol">The protocol, as the lab wrote it</label>
+        <textarea id="protocol" spellcheck="false" aria-describedby="protocolhelp"></textarea>
+        <p id="protocolhelp" class="muted" style="font-size:0.85rem;margin:0">One step a line: <code>pick tip</code>, <code>aspirate 10 µL from A1</code>, <code>dispense 10 µL into A2</code>, <code>mix A2</code>, <code>eject tip</code>, <code>add 90 µL buffer to A1..A8</code>. <code>reservoir stock = 1 M</code> names a bottle.</p>
+      </div>
+      <div class="field">
+        <label for="targets">The target per well</label>
+        <textarea id="targets" spellcheck="false"></textarea>
+      </div>
+      <div class="row">
+        <button type="button" class="btn" id="run">Run it in the twin</button>
+        <button type="button" class="btn quiet" id="fix">VibeSci, fix it</button>
+      </div>
+      <div class="problems" id="problems" hidden></div>
+      <div class="problems" id="targetproblems" hidden></div>
+    </div>
+
+    <div class="panel">
+      <canvas id="stage" width="720" height="360" role="img" aria-label="A 96-well plate seen from the bench, with the wells coloured by what they hold"></canvas>
+      <div class="row" style="justify-content:space-between">
+        <span class="row">
+          <button type="button" class="btn small quiet" id="back" aria-label="Previous step">◀</button>
+          <button type="button" class="btn small quiet" id="replay">Replay</button>
+          <button type="button" class="btn small quiet" id="forward" aria-label="Next step">▶</button>
+        </span>
+        <span id="stepcount" class="mono">Step 1</span>
+      </div>
+      <div class="verdict" id="verdict" role="status" hidden></div>
+      <h3>What the bench did</h3>
+      <ol class="log" id="steps"></ol>
+      <h3>What the bench noticed</h3>
+      <ul class="log" id="warnings"></ul>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="table-title">
+    <h2 id="table-title" class="misreg">Target against the twin</h2>
+    <table class="results" id="results">
+      <thead><tr><th scope="col">Well</th><th scope="col">Target</th><th scope="col">What the twin found</th><th scope="col">Verdict</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="section" aria-labelledby="fix-title">
+    <h2 id="fix-title" class="misreg">The rewrite</h2>
+    <div class="verdict" id="fixverdict" role="status" hidden></div>
+    <div class="two">
+      <div>
+        <h3>What VibeSci rewrote</h3>
+        <ul class="changes" id="changes"><li class="none muted">Ask for the fix and every line it adds is listed here, with the reason.</li></ul>
+      </div>
+      <div>
+        <h3>The protocol after the rewrite</h3>
+        <pre class="code" id="fixedcode" hidden></pre>
+        <h3>The rewritten run</h3>
+        <table class="results" id="after">
+          <thead><tr><th scope="col">Well</th><th scope="col">What the twin found</th><th scope="col">Verdict</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <p class="notice mono" style="margin-top:40px">The demo runs on a model of a bench. It is not a substitute for your lab’s own validation.</p>
+</main>
+<footer class="foot">
+  <span>VibeSci is a company of CommandAGI. Its team are AI agents, and they say so. Prices are set at launch; the demo is free.</span>
+  <span><a href="index.html">The bench</a> · <a href="mailto:hello@vibesci.dev">hello@vibesci.dev</a></span>
 </footer>
 <script type="module" src="app/lab.js"></script>
+<script type="module" src="app/lang.js"></script>
 </body>
 </html>
